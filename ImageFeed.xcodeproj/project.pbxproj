@@ -14,6 +14,9 @@
 		944021D72DF98E0C008955DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944021CC2DF98E0C008955DE /* LaunchScreen.storyboard */; };
 		944021D82DF98E0C008955DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944021CE2DF98E0C008955DE /* Main.storyboard */; };
 		949D9E382DFCAB9700C3D9F5 /* ImagesListViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9E372DFCAB8B00C3D9F5 /* ImagesListViewController+Extensions.swift */; };
+		949D9E3A2DFCB34D00C3D9F5 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9E392DFCB34000C3D9F5 /* ImagesListCell.swift */; };
+		949D9E3D2DFD59E000C3D9F5 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9E3C2DFD59D600C3D9F5 /* Date+Extensions.swift */; };
+		949D9E3F2DFD93C300C3D9F5 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9E3E2DFD93B200C3D9F5 /* UIViewController+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		944021CF2DF98E0C008955DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		944021D02DF98E0C008955DE /* ImagesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListViewController.swift; sourceTree = "<group>"; };
 		949D9E372DFCAB8B00C3D9F5 /* ImagesListViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImagesListViewController+Extensions.swift"; sourceTree = "<group>"; };
+		949D9E392DFCB34000C3D9F5 /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
+		949D9E3C2DFD59D600C3D9F5 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		949D9E3E2DFD93B200C3D9F5 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +64,13 @@
 		944021D12DF98E0C008955DE /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
+				949D9E3B2DFCB38800C3D9F5 /* ImageList */,
 				949D9E342DFCAACD00C3D9F5 /* Extensions */,
 				944021D92DF9A12D008955DE /* Resources */,
 				944021C82DF98E0C008955DE /* AppDelegate.swift */,
 				944021CA2DF98E0C008955DE /* Info.plist */,
 				944021CE2DF98E0C008955DE /* Main.storyboard */,
 				944021CF2DF98E0C008955DE /* SceneDelegate.swift */,
-				944021D02DF98E0C008955DE /* ImagesListViewController.swift */,
 			);
 			path = ImageFeed;
 			sourceTree = "<group>";
@@ -81,9 +87,20 @@
 		949D9E342DFCAACD00C3D9F5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				949D9E3E2DFD93B200C3D9F5 /* UIViewController+Extensions.swift */,
+				949D9E3C2DFD59D600C3D9F5 /* Date+Extensions.swift */,
 				949D9E372DFCAB8B00C3D9F5 /* ImagesListViewController+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		949D9E3B2DFCB38800C3D9F5 /* ImageList */ = {
+			isa = PBXGroup;
+			children = (
+				944021D02DF98E0C008955DE /* ImagesListViewController.swift */,
+				949D9E392DFCB34000C3D9F5 /* ImagesListCell.swift */,
+			);
+			path = ImageList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,9 +178,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				949D9E382DFCAB9700C3D9F5 /* ImagesListViewController+Extensions.swift in Sources */,
+				949D9E3A2DFCB34D00C3D9F5 /* ImagesListCell.swift in Sources */,
 				944021D22DF98E0C008955DE /* AppDelegate.swift in Sources */,
+				949D9E3F2DFD93C300C3D9F5 /* UIViewController+Extensions.swift in Sources */,
 				944021D32DF98E0C008955DE /* SceneDelegate.swift in Sources */,
 				944021D42DF98E0C008955DE /* ImagesListViewController.swift in Sources */,
+				949D9E3D2DFD59E000C3D9F5 /* Date+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
