@@ -8,16 +8,25 @@
 import UIKit
 
 final class ImagesListViewController: UIViewController {
+    // MARK: - @IBOutlet
     @IBOutlet private var tableView: UITableView!
     
+    // MARK: - Definition
+    let photosName = Array(0..<20).map{ "\($0)" }
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 200
+        tableView.contentInset = UIEdgeInsets(top: 10, left:0, bottom: 12, right: 0)
     }
 
-    func configCell(for cell: ImagesListCell) {
-        
+    func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
+        guard let image = UIImage(named: photosName[indexPath.row]) else { return }
+        let likeImage = UIImage(named: indexPath.row % 2 == 0 ? "FavoritesActive" : "FavoritesNoActive")
+        cell.cellImage.image = image
+        cell.dateLabel.text = Date().longDateString
+        cell.likeButton.setImage(likeImage, for: .normal)
     }
 }
 
