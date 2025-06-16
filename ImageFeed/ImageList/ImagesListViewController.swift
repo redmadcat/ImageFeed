@@ -9,10 +9,14 @@ import UIKit
 
 final class ImagesListViewController: UIViewController {
     // MARK: - @IBOutlet
-    @IBOutlet private var tableView: UITableView!
+    @IBOutlet weak private var tableView: UITableView!
     
     // MARK: - Definition
-    let photosName = Array(0..<20).map{ "\($0)" }
+    let photoNames = (0..<20).map { String($0) }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -22,7 +26,7 @@ final class ImagesListViewController: UIViewController {
     }
 
     func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
-        guard let image = UIImage(named: photosName[indexPath.row]) else { return }
+        guard let image = UIImage(named: photoNames[indexPath.row]) else { return }
         let likeImage = UIImage(named: indexPath.row % 2 == 0 ? "FavoritesActive" : "FavoritesNoActive")
         cell.cellImage.image = image
         cell.dateLabel.text = Date().longDateString
