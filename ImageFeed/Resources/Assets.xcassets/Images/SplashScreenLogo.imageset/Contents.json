@@ -1,8 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "Vector.svg",
-      "idiom" : "universal"
+      "filename" : "SplashScreenLogo.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "SplashScreenLogo@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "SplashScreenLogo@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
