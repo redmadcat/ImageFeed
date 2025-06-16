@@ -8,13 +8,15 @@
 import Foundation
 
 extension Date {
-    var dateTimeString: String { DateFormatter.defaultDateTime.string(from: self) }
+    var longDateString: String { DateFormatter.longDate.string(from: self) }
 }
 
 private extension DateFormatter {
-    static let defaultDateTime: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YY hh:mm"
-        return dateFormatter
+    static let longDate: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter
     }()
 }
+
