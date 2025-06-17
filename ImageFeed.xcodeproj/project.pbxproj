@@ -18,6 +18,7 @@
 		949D9E3D2DFD59E000C3D9F5 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9E3C2DFD59D600C3D9F5 /* Date+Extensions.swift */; };
 		949D9E3F2DFD93C300C3D9F5 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9E3E2DFD93B200C3D9F5 /* UIViewController+Extensions.swift */; };
 		94CA760D2E01580C0037986A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CA760C2E0157FE0037986A /* ProfileViewController.swift */; };
+		94CA760F2E019AD40037986A /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CA760E2E019AC90037986A /* SingleImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		949D9E3C2DFD59D600C3D9F5 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		949D9E3E2DFD93B200C3D9F5 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		94CA760C2E0157FE0037986A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		94CA760E2E019AC90037986A /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		949D9E3B2DFCB38800C3D9F5 /* ImageList */ = {
 			isa = PBXGroup;
 			children = (
+				94CA760E2E019AC90037986A /* SingleImageViewController.swift */,
 				944021D02DF98E0C008955DE /* ImagesListViewController.swift */,
 				949D9E392DFCB34000C3D9F5 /* ImagesListCell.swift */,
 			);
@@ -197,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				949D9E382DFCAB9700C3D9F5 /* ImagesListViewController+Extensions.swift in Sources */,
+				94CA760F2E019AD40037986A /* SingleImageViewController.swift in Sources */,
 				949D9E3A2DFCB34D00C3D9F5 /* ImagesListCell.swift in Sources */,
 				944021D22DF98E0C008955DE /* AppDelegate.swift in Sources */,
 				949D9E3F2DFD93C300C3D9F5 /* UIViewController+Extensions.swift in Sources */,
