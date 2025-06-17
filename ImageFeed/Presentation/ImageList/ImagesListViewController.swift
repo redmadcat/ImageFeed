@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ImagesListViewController.swift
 //  ImageFeed
 //
 //  Created by Roman Yaschenkov on 11.06.2025.
@@ -38,7 +38,7 @@ final class ImagesListViewController: UIViewController {
 import SwiftUI
 
 @available(iOS 13, *)
-struct ViewControllerPreview: PreviewProvider {
+struct ImagesListViewControllerPreview: PreviewProvider {
     static var devices = ["iPnone SE", "iPhone 11 Pro Max"]
     
     static var previews: some View {
