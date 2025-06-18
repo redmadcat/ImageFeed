@@ -14,15 +14,26 @@ final class ImagesListViewController: UIViewController {
     // MARK: - Definition
     let photoNames = (0..<20).map { String($0) }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.contentInset = UIEdgeInsets(top: 10, left:0, bottom: 12, right: 0)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == getSegueIdentifier() {
+            guard
+                let viewController = segue.destination as? SingleImageViewController,
+                let indexPath = sender as? IndexPath
+            else {
+                assertionFailure("Invalid segue destination")
+                return
+            }
+            viewController.image = UIImage(named: photoNames[indexPath.row])
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
     }
 
     func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
