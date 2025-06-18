@@ -28,7 +28,7 @@ extension ImagesListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension ImagesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: getSegueIdentifier(), sender: indexPath)
+        performSegue(withIdentifier: singleImageSegueIdentifier(), sender: indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -42,7 +42,7 @@ extension ImagesListViewController: UITableViewDelegate {
         return cellHeight
     }
     
-    func getSegueIdentifier() -> String {
+    func singleImageSegueIdentifier() -> String {
         return "ShowSingleImage"
     }
 }

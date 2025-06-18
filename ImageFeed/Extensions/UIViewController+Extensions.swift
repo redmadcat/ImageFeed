@@ -12,6 +12,8 @@ import SwiftUI
 
 @available(iOS 13, *)
 extension UIViewController {
+    static var devices = ["iPnone SE", "iPhone 11 Pro Max"]
+    
     private struct Preview: UIViewControllerRepresentable {
         // this variable is used for injecting the current view controller
         let viewController: UIViewController

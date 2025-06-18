@@ -22,7 +22,7 @@ final class ImagesListViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == getSegueIdentifier() {
+        if segue.identifier == singleImageSegueIdentifier() {
             guard
                 let viewController = segue.destination as? SingleImageViewController,
                 let indexPath = sender as? IndexPath
@@ -50,10 +50,8 @@ import SwiftUI
 
 @available(iOS 13, *)
 struct ImagesListViewControllerPreview: PreviewProvider {
-    static var devices = ["iPnone SE", "iPhone 11 Pro Max"]
-    
     static var previews: some View {
-        ForEach(devices, id: \.self) { deviceName in
+        ForEach(UIViewController.devices, id: \.self) { deviceName in
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ImageList").toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)

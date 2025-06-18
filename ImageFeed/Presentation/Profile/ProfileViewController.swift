@@ -23,10 +23,8 @@ import SwiftUI
 
 @available(iOS 13, *)
 struct ProfileViewControllerPreview: PreviewProvider {
-    static var devices = ["iPnone SE", "iPhone 11 Pro Max"]
-    
     static var previews: some View {
-        ForEach(devices, id: \.self) { deviceName in
+        ForEach(UIViewController.devices, id: \.self) { deviceName in
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "Profile").toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
