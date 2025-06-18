@@ -71,8 +71,8 @@
 				94CA760A2E0157BE0037986A /* Presentation */,
 				949D9E342DFCAACD00C3D9F5 /* Extensions */,
 				944021D92DF9A12D008955DE /* Resources */,
-				944021C82DF98E0C008955DE /* AppDelegate.swift */,
 				944021CF2DF98E0C008955DE /* SceneDelegate.swift */,
+				944021C82DF98E0C008955DE /* AppDelegate.swift */,
 				944021CE2DF98E0C008955DE /* Main.storyboard */,
 			);
 			path = ImageFeed;
