@@ -225,9 +225,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="ngf-hp-FQB">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FsL-Ac-h92">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="ngf-hp-FQB">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <viewLayoutGuide key="contentLayoutGuide" id="B16-EN-LgI"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="m4k-D4-N07"/>
+                                <connections>
+                                    <outlet property="delegate" destination="0i4-im-35u" id="q0z-N9-yL2"/>
+                                </connections>
+                            </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMM-YT-Z20">
                                 <rect key="frame" x="8" y="8" width="48" height="48"/>
                                 <constraints>
@@ -244,22 +255,23 @@
                         <viewLayoutGuide key="safeArea" id="Dgh-bK-agR"/>
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
+                            <constraint firstItem="Dgh-bK-agR" firstAttribute="bottom" secondItem="FsL-Ac-h92" secondAttribute="bottom" id="3ea-UC-S73"/>
                             <constraint firstItem="yMM-YT-Z20" firstAttribute="top" secondItem="Dgh-bK-agR" secondAttribute="top" constant="8" id="4Wb-Ec-H2O"/>
                             <constraint firstItem="yMM-YT-Z20" firstAttribute="leading" secondItem="Dgh-bK-agR" secondAttribute="leading" constant="8" id="Acd-tv-zsM"/>
-                            <constraint firstItem="ngf-hp-FQB" firstAttribute="leading" secondItem="YrO-aH-d3S" secondAttribute="leading" id="Hyp-et-r1s"/>
-                            <constraint firstAttribute="bottom" secondItem="ngf-hp-FQB" secondAttribute="bottom" id="Qc2-Mn-054"/>
-                            <constraint firstAttribute="trailing" secondItem="ngf-hp-FQB" secondAttribute="trailing" id="nEn-AX-DTy"/>
-                            <constraint firstItem="ngf-hp-FQB" firstAttribute="top" secondItem="YrO-aH-d3S" secondAttribute="top" id="u1b-Ec-Jm8"/>
+                            <constraint firstItem="FsL-Ac-h92" firstAttribute="leading" secondItem="Dgh-bK-agR" secondAttribute="leading" id="CjT-Wk-du4"/>
+                            <constraint firstItem="Dgh-bK-agR" firstAttribute="trailing" secondItem="FsL-Ac-h92" secondAttribute="trailing" id="mtK-g2-F71"/>
+                            <constraint firstItem="FsL-Ac-h92" firstAttribute="top" secondItem="Dgh-bK-agR" secondAttribute="top" id="ydV-b2-qEN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oSV-Eb-7sI"/>
                     <connections>
                         <outlet property="imageView" destination="ngf-hp-FQB" id="G1R-kf-XQ2"/>
+                        <outlet property="scrollView" destination="FsL-Ac-h92" id="qA4-VL-ygf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nk0-PJ-hut" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1022" y="-348"/>
+            <point key="canvasLocation" x="1021.7391304347827" y="-348.21428571428572"/>
         </scene>
     </scenes>
     <resources>
