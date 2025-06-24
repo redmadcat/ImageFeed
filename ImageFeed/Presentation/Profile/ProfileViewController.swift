@@ -66,7 +66,7 @@ final class ProfileViewController: UIViewController {
         ])
     }
     
-    // MARK: - @IBAction
+    // MARK: - Button action
     @objc private func didTapLogoutButton() {
     }
 }
