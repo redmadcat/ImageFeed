@@ -43,6 +43,10 @@ final class ImagesListViewController: UIViewController {
         cell.dateLabel.text = Date().longDateString
         cell.likeButton.setImage(likeImage, for: .normal)
     }
+    
+    func singleImageSegueIdentifier() -> String {
+        return "ShowSingleImage"
+    }
 }
 
 #if DEBUG
