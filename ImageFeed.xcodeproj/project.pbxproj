@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94013FE42E0A7A99001503A1 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94013FE32E0A7A83001503A1 /* UILabel+Extensions.swift */; };
 		944021D22DF98E0C008955DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944021C82DF98E0C008955DE /* AppDelegate.swift */; };
 		944021D32DF98E0C008955DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944021CF2DF98E0C008955DE /* SceneDelegate.swift */; };
 		944021D42DF98E0C008955DE /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944021D02DF98E0C008955DE /* ImagesListViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		94013FE32E0A7A83001503A1 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		944021B02DF98C36008955DE /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		944021C82DF98E0C008955DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		944021C92DF98E0C008955DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		949D9E342DFCAACD00C3D9F5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				94013FE32E0A7A83001503A1 /* UILabel+Extensions.swift */,
 				949D9E3E2DFD93B200C3D9F5 /* UIViewController+Extensions.swift */,
 				949D9E3C2DFD59D600C3D9F5 /* Date+Extensions.swift */,
 				949D9E372DFCAB8B00C3D9F5 /* ImagesListViewController+Extensions.swift */,
@@ -205,6 +208,7 @@
 				944021D22DF98E0C008955DE /* AppDelegate.swift in Sources */,
 				949D9E3F2DFD93C300C3D9F5 /* UIViewController+Extensions.swift in Sources */,
 				944021D32DF98E0C008955DE /* SceneDelegate.swift in Sources */,
+				94013FE42E0A7A99001503A1 /* UILabel+Extensions.swift in Sources */,
 				944021D42DF98E0C008955DE /* ImagesListViewController.swift in Sources */,
 				94CA760D2E01580C0037986A /* ProfileViewController.swift in Sources */,
 				949D9E3D2DFD59E000C3D9F5 /* Date+Extensions.swift in Sources */,
