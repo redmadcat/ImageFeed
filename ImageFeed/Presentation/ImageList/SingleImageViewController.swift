@@ -65,6 +65,7 @@ final class SingleImageViewController: UIViewController, UIScrollViewDelegate {
     @IBAction private func didTapShareButton() {
         guard let image else { return }
         let share = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        share.overrideUserInterfaceStyle = .dark
         present(share, animated: true, completion: nil)
     }
 }
