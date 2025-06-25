@@ -16,11 +16,10 @@ final class ProfileViewController: UIViewController {
     
     // MARK: - Private functions
     private func configureLayout() {
-        let logoutButton = UIButton.systemButton(
-            with: UIImage(named: "Logout") ?? UIImage(),
-            target: self,
-            action: #selector(didTapLogoutButton))
+        let logoutButton = UIButton(type: .custom)
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        logoutButton.setImage(UIImage(named: "Logout") ?? UIImage(), for: .normal)
+        logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
         logoutButton.tintColor = .ypRed
                 
         let imageView = UIImageView()
@@ -66,7 +65,7 @@ final class ProfileViewController: UIViewController {
         ])
     }
     
-    // MARK: - Button action
+    // MARK: - Button actions
     @objc private func didTapLogoutButton() {
     }
 }
