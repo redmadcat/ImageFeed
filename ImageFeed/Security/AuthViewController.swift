@@ -51,7 +51,7 @@ import SwiftUI
 struct AuthViewControllerPreview: PreviewProvider {
     static var previews: some View {
         ForEach(UIViewController.devices, id: \.self) { deviceName in
-            UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "Authentication").toPreview()
+            UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "AuthView").toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
         }

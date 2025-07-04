@@ -224,7 +224,7 @@
         <!--Authentication-->
         <scene sceneID="sh0-kC-PRT">
             <objects>
-                <viewController title="Authentication" id="e0I-K1-XFh" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthView" title="Authentication" id="e0I-K1-XFh" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5H4-0F-Khh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
