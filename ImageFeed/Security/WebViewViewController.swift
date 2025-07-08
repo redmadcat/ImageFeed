@@ -13,20 +13,24 @@ enum WebViewConstants {
 }
 
 final class WebViewViewController: UIViewController {
+    // MARK: - @IBOutlet
     @IBOutlet weak private var webView: WKWebView!
     @IBOutlet weak private var progressView: UIProgressView!
     
+    // MARK: - Definition
     weak var delegate: WebViewViewControllerDelegate?
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         webView.navigationDelegate = self
-        
-        
         loadAuthView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         webView.addObserver(
             self,
             forKeyPath: #keyPath(WKWebView.estimatedProgress),
@@ -49,6 +53,7 @@ final class WebViewViewController: UIViewController {
         }
     }
     
+    // MARK: - Private func
     private func updateProgress() {
         progressView.progress = Float(webView.estimatedProgress)
         progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
@@ -62,7 +67,7 @@ final class WebViewViewController: UIViewController {
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: Constants.accessKey),
             URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),
-            URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "response_type", value: Constants.responseType),
             URLQueryItem(name: "scope", value: Constants.accessScope)
         ]
         
@@ -73,6 +78,7 @@ final class WebViewViewController: UIViewController {
         
         let request = URLRequest(url: url)
         webView.load(request)
+        
+        updateProgress()
     }
-    
 }
