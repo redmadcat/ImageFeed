@@ -15,6 +15,7 @@ enum Constants {
     static let defaultBaseURL = URL(string: "https://api.unsplash.com")!
     static let responseType = "code"
     static let authorizePath = "/oauth/authorize/native"
+    static let grantType = "authorization_code"
 }
 
 
