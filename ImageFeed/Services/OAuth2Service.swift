@@ -8,6 +8,7 @@
 import UIKit
 
 final class OAuth2Service {
+    private let oauth2Storage = OAuth2TokenStorage()
     static let shared = OAuth2Service()
     
     private init() { }
@@ -15,12 +16,15 @@ final class OAuth2Service {
     func fetchOAuthToken(code: String, completion: @escaping (Result<String, Error>) -> Void) {
         guard let request = makeOAuthTokenRequest(code: code) else { return }
                 
-        let task = URLSession.shared.data(for: request) { result in
+        let task = URLSession.shared.data(for: request) { [weak self] result in
+            guard let self else { return }
+            
             switch result {
             case .success(let data):
                 do {
                     let response = try JSONDecoder().decode(OAuthTokenResponseBody.self, from: data)
-                    completion(.success(response.accessToken))
+                    self.oauth2Storage.token = response.accessToken
+                    completion(.success(""))
                 } catch {
                     completion(.failure(error))
                 }
