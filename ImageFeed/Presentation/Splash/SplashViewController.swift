@@ -8,20 +8,37 @@
 import UIKit
 
 final class SplashViewController: UIViewController, AuthViewControllerDelegate {
+    // MARK: - Definition
     private let showAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     private let tabBarViewControllerIdentifier = "TabBarViewController"
-    private let tokenStorage = OAuth2TokenStorage()
+    private let oauth2Storage = OAuth2TokenStorage()
     
+    // MARK: - Lifecycle
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
                     
-        if tokenStorage.token != nil {
+        if oauth2Storage.token != nil {
             switchToTabBarController()
         } else {
             performSegue(withIdentifier: showAuthenticationScreenSegueIdentifier, sender: nil)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == showAuthenticationScreenSegueIdentifier {
+            guard
+                let navigationController = segue.destination as? UINavigationController,
+                let viewController = navigationController.viewControllers.first as? AuthViewController
+            else {
+                fatalError("Invalid segue destination \(showAuthenticationScreenSegueIdentifier)!")
+            }
+            viewController.delegate = self
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
         
+    // MARK: - Private func
     private func switchToTabBarController() {
         guard let window = UIApplication.shared.windows.first else {
             fatalError("Invalid window configuration")
@@ -32,21 +49,8 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
         
         window.rootViewController = tabBarController
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == showAuthenticationScreenSegueIdentifier {
-            guard
-                let navigationController = segue.destination as? UINavigationController,
-                let viewController = navigationController.viewControllers.first as? AuthViewController
-            else {
-                fatalError("Failed to prepare segue")
-            }
-            viewController.delegate = self
-        } else {
-            super.prepare(for: segue, sender: sender)
-        }
-    }
-    
+        
+    // MARK: - AuthViewControllerDelegate
     func didAuthenticate(_ vc: AuthViewController) {
         vc.dismiss(animated: true)
         
