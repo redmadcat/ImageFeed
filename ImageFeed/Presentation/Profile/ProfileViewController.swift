@@ -14,7 +14,7 @@ final class ProfileViewController: UIViewController {
         configureLayout()
     }
     
-    // MARK: - Private functions
+    // MARK: - Private func
     private func configureLayout() {
         let logoutButton = getLogoutButton()
         let profileImageView = getProfileImageView()

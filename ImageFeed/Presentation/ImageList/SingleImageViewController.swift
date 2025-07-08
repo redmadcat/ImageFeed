@@ -34,7 +34,7 @@ final class SingleImageViewController: UIViewController, UIScrollViewDelegate {
         rescaleAndCenterImageInScrollView(image: image)
     }
     
-    // MARK: - Private functions
+    // MARK: - Private func
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
         let minZoomScale = scrollView.minimumZoomScale
         let maxZoomScale = scrollView.maximumZoomScale
