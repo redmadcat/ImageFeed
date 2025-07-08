@@ -337,7 +337,7 @@
         <!--Splash-->
         <scene sceneID="fCU-3h-BSe">
             <objects>
-                <viewController title="Splash" id="bYN-bg-rvU" customClass="SplashViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SplashView" title="Splash" id="bYN-bg-rvU" customClass="SplashViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yqQ-un-D8r">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
