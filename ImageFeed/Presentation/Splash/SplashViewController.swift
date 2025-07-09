@@ -16,7 +16,7 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
     // MARK: - Lifecycle
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-                    
+
         if oauth2Storage.token != nil {
             switchToTabBarController()
         } else {
@@ -44,10 +44,10 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
             fatalError("Invalid window configuration")
         }
         
-        let tabBarController = UIStoryboard(name: "Main", bundle: .main)
+        let tabBarViewController = UIStoryboard(name: "Main", bundle: .main)
             .instantiateViewController(withIdentifier: tabBarViewControllerIdentifier)
         
-        window.rootViewController = tabBarController
+        window.rootViewController = tabBarViewController
     }
         
     // MARK: - AuthViewControllerDelegate
