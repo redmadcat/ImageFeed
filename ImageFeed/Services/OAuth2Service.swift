@@ -13,7 +13,7 @@ final class OAuth2Service {
     
     private init() { }
     
-    func fetchOAuthToken(code: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
         guard let request = makeOAuthTokenRequest(code: code) else { return }
                 
         let task = URLSession.shared.data(for: request) { [weak self] result in
