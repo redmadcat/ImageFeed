@@ -22,9 +22,11 @@ final class OAuth2Service {
             switch result {
             case .success(let data):
                 do {
-                    let response = try JSONDecoder().decode(OAuthTokenResponseBody.self, from: data)
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let response = try decoder.decode(OAuthTokenResponseBody.self, from: data)
                     self.oauth2Storage.token = response.accessToken
-                    completion(.success(""))
+                    completion(.success(response.accessToken))
                 } catch {
                     completion(.failure(error))
                 }
@@ -38,6 +40,7 @@ final class OAuth2Service {
     
     private func makeOAuthTokenRequest(code: String) -> URLRequest? {
         guard var urlComponents = URLComponents(string: "https://unsplash.com/oauth/token") else {
+            print("url components error!")
             return nil
         }
         

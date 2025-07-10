@@ -44,7 +44,6 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         vc.dismiss(animated: true)
                         
-        // Strong reference is necessary here to prevent self premature release
         oauth2Service.fetchOAuthToken(code) { result in
             switch result {
             case .success:
