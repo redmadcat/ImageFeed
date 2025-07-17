@@ -45,9 +45,9 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         vc.dismiss(animated: true)
                         
-        ProgressHUD.animate()
+        UIBlockingProgressHUD.show()
         oauth2Service.fetchOAuthToken(code) { result in
-            ProgressHUD.dismiss()
+            UIBlockingProgressHUD.hide()
             
             switch result {
             case .success:
