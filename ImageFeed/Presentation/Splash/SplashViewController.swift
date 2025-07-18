@@ -12,13 +12,14 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
     private let showAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     private let tabBarViewControllerIdentifier = "TabBarViewController"
     private let oauth2Storage = OAuth2TokenStorage()
+    private let profileService = ProfileService.shared
     
     // MARK: - Lifecycle
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if oauth2Storage.token != nil {
-            switchToTabBarController()
+        if let token = oauth2Storage.token {
+            fetchProfile(token)
         } else {
             performSegue(withIdentifier: showAuthenticationScreenSegueIdentifier, sender: nil)
         }
@@ -49,11 +50,32 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
         
         window.rootViewController = tabBarViewController
     }
+    
+    private func fetchProfile(_ token: String) {
+        UIBlockingProgressHUD.show()
+        
+        profileService.fetchProfile(token) { [weak self] result in
+            UIBlockingProgressHUD.hide()
+            
+            guard let self else { return }
+            
+            switch result {
+            case .success:
+                self.switchToTabBarController()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
         
     // MARK: - AuthViewControllerDelegate
     func didAuthenticate(_ vc: AuthViewController) {
         vc.dismiss(animated: true)
         
-        switchToTabBarController()
+        guard let token = oauth2Storage.token else {
+            print("Cannot get token from storage")
+            return
+        }
+        fetchProfile(token)
     }
 }
