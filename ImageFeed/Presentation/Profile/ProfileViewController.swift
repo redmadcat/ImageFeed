@@ -8,12 +8,15 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
+    // MARK: - Definition
+    private let profile = ProfileService.shared.profile
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
     }
-    
+        
     // MARK: - Private func
     private func configureLayout() {
         let logoutButton = getLogoutButton()
@@ -72,17 +75,17 @@ final class ProfileViewController: UIViewController {
     
     private func getProfileNameLabel() -> UIView {
         UILabel(
-            text: "Екатерина Новикова",
+            text: profile?.name ?? "",
             textColor: UIColor.ypWhite,
             font:.systemFont(ofSize: 23, weight: .semibold))
     }
     
     private func getProfileLoginLabel() -> UIView {
-        UILabel(text: "@ekaterina_nov", textColor: UIColor.ypGray)
+        UILabel(text: profile?.loginName ?? "", textColor: UIColor.ypGray)
     }
     
     private func getProfileDescriptionLabel() -> UIView {
-        UILabel(text: "Hello, world!", textColor: UIColor.ypWhite)
+        UILabel(text: profile?.bio ?? "", textColor: UIColor.ypWhite)
     }
     
     // MARK: - Button actions
