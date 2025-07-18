@@ -22,7 +22,6 @@ final class OAuth2Service {
     private init() { }
     
     func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
-        // main thread check
         guard lastCode != code else {
             completion(.failure(AuthServiceError.invalidRequest))
             return
@@ -43,9 +42,7 @@ final class OAuth2Service {
                 switch result {
                 case .success(let data):
                     do {
-                        let decoder = JSONDecoder()
-                        decoder.keyDecodingStrategy = .convertFromSnakeCase
-                        let response = try decoder.decode(OAuthTokenResponseBody.self, from: data)
+                        let response = try JSONDecoder(strategy: .convertFromSnakeCase).decode(OAuthTokenResponseBody.self, from: data)
                         self.oauth2Storage.token = response.accessToken
                         completion(.success(response.accessToken))
                     } catch {
