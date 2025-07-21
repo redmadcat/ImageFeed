@@ -1,0 +1,82 @@
+//
+//  ProfileImageService.swift
+//  ImageFeed
+//
+//  Created by Roman Yaschenkov on 21.07.2025.
+//
+
+import Foundation
+
+private struct UserResult: Codable {
+    let profileImage: ProfileImage
+}
+
+final class ProfileImageService {
+    // MARK: - Definition
+    private let urlSession = URLSession.shared
+    private let oauth2Storage = OAuth2TokenStorage()
+    private var task: URLSessionTask?
+    private(set) var avatarURL: String?
+        
+    static let didChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
+    static let shared = ProfileImageService()
+    
+    private init() { }
+    
+    // MARK: - Lifecycle
+    func fetchProfileImageURL(username: String, _ completion: @escaping (Result<String, Error>) -> Void) {
+        task?.cancel()
+        
+        guard let token = oauth2Storage.token else {
+            completion(.failure(NSError(domain: "ProfileImageService", code: 401,
+                                        userInfo: [NSLocalizedDescriptionKey: "Authorization token missing"])))
+            return
+        }
+        
+        guard let request = makeProfileImageRequest(username: username, token: token) else {
+            completion(.failure(URLError(.badURL)))
+            return
+        }
+        
+        let task = urlSession.data(for: request) { [weak self] result in
+            guard let self else { return }
+                        
+            switch result {
+            case .success(let data):
+                do {
+                    let result = try JSONDecoder(strategy: .convertFromSnakeCase).decode(UserResult.self, from: data)
+                    
+                    self.avatarURL = result.profileImage.small
+                    completion(.success(result.profileImage.small))
+                    NotificationCenter.default
+                        .post(
+                            name: ProfileImageService.didChangeNotification,
+                            object: self,
+                            userInfo: ["URL": self.avatarURL]
+                        )
+                } catch {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+            self.task = nil
+        }
+        
+        self.task = task
+        task.resume()
+    }
+    
+    // MARK: - Private func
+    private func makeProfileImageRequest(username: String, token: String) -> URLRequest? {
+        guard let url = URL(string: "https://api.unsplash.com/users/\(username)") else {
+            print(URLError(.badURL))
+            return nil
+        }
+                
+        var request = URLRequest(url: url)
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
+        return request
+    }
+}
