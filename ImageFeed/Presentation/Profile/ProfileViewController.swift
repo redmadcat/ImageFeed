@@ -10,14 +10,34 @@ import UIKit
 final class ProfileViewController: UIViewController {
     // MARK: - Definition
     private let profile = ProfileService.shared.profile
+    private var profileImageServiceObserver: NSObjectProtocol?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
+        
+        profileImageServiceObserver = NotificationCenter.default
+            .addObserver(
+                forName: ProfileImageService.didChangeNotification,
+                object: nil,
+                queue: .main
+            ){ [weak self] _ in
+                guard let self else { return }
+                self.updateAvatar()
+            }
+        updateAvatar()
     }
         
     // MARK: - Private func
+    private func updateAvatar() {
+        guard
+            let profileImageURL = ProfileImageService.shared.avatarURL,
+            let url = URL(string: profileImageURL)
+        else { return }
+        // TODO Update avatar via Kingfisher
+    }
+    
     private func configureLayout() {
         let logoutButton = getLogoutButton()
         let profileImageView = getProfileImageView()
