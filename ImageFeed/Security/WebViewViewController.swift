@@ -32,6 +32,7 @@ final class WebViewViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         estimatedProgressObservation = webView.observe(
             \.estimatedProgress,
              options: [],
@@ -61,7 +62,7 @@ final class WebViewViewController: UIViewController {
         ]
         
         guard let url = urlComponents.url else {
-            print("url error!")
+            print(URLError(.badURL))
             return
         }
         
