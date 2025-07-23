@@ -35,20 +35,16 @@ final class OAuth2Service {
             return
         }
         
-        let task = urlSession.data(for: request) { [weak self] result in
+        let task = urlSession.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
             guard let self else { return }
             
             DispatchQueue.main.async {
                 switch result {
-                case .success(let data):
-                    do {
-                        let response = try JSONDecoder(strategy: .convertFromSnakeCase).decode(OAuthTokenResponseBody.self, from: data)
-                        self.oauth2Storage.token = response.accessToken
-                        completion(.success(response.accessToken))
-                    } catch {
-                        completion(.failure(error))
-                    }
+                case .success(let response):
+                    self.oauth2Storage.token = response.accessToken
+                    completion(.success(response.accessToken))
                 case .failure(let error):
+                    print(error)
                     completion(.failure(error))
                 }
                 self.task = nil
