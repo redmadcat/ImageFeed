@@ -54,6 +54,15 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
                 self.delegate?.didAuthenticate(self)
             case .failure(let error):
                 print(error)
+                
+                let alert = UIAlertController(
+                    title: "Something went wrong", //Что-то пошло не так
+                    message: "Couldn't log in", //Не удалось войти в систему
+                    preferredStyle: .alert)
+
+                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
