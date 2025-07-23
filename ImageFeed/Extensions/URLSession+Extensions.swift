@@ -26,14 +26,14 @@ extension URLSession {
                     completion(.success(result))
                 } catch {
                     if let decodingError = error as? DecodingError {
-                        print("decoding error: \(decodingError), data: \(String(data: data, encoding: .utf8) ?? "")")
+                        log("decoding error: \(decodingError), data: \(String(data: data, encoding: .utf8) ?? "")")
                     } else {
-                        print("decoding error: \(error.localizedDescription), data: \(String(data: data, encoding: .utf8) ?? "")")
+                        log("decoding error: \(error.localizedDescription), data: \(String(data: data, encoding: .utf8) ?? "")")
                     }
                     completion(.failure(error))
                 }
             case .failure(let error):
-                print("request error: \(error.localizedDescription)")
+                log(error.localizedDescription)
                 completion(.failure(error))
             }
         }
@@ -52,14 +52,14 @@ extension URLSession {
                 if 200 ..< 300 ~= statusCode {
                     fulfillCompletionOnTheMainThread(.success(data))
                 } else {
-                    print(NetworkError.httpStatusCode(statusCode))
+                    log(NetworkError.httpStatusCode(statusCode))
                     fulfillCompletionOnTheMainThread(.failure(NetworkError.httpStatusCode(statusCode)))
                 }
             } else if let error = error {
-                print(NetworkError.urlRequestError(error))
+                log(NetworkError.urlRequestError(error))
                 fulfillCompletionOnTheMainThread(.failure(NetworkError.urlRequestError(error)))
             } else {
-                print(NetworkError.urlSessionError)
+                log(NetworkError.urlSessionError)
                 fulfillCompletionOnTheMainThread(.failure(NetworkError.urlSessionError))
             }
         })

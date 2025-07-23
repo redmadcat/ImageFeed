@@ -53,7 +53,7 @@ final class ProfileImageService {
                         userInfo: ["URL": self.avatarURL ?? ""]
                     )
             case .failure(let error):
-                print(error)
+                log(error.localizedDescription)
                 completion(.failure(error))
             }
             self.task = nil
@@ -66,7 +66,7 @@ final class ProfileImageService {
     // MARK: - Private func
     private func makeProfileImageRequest(username: String, token: String) -> URLRequest? {
         guard let url = URL(string: "https://api.unsplash.com/users/\(username)") else {
-            print(URLError(.badURL))
+            log(URLError(.badURL))
             return nil
         }
                 

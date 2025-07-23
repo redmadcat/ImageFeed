@@ -44,7 +44,7 @@ final class OAuth2Service {
                     self.oauth2Storage.token = response.accessToken
                     completion(.success(response.accessToken))
                 case .failure(let error):
-                    print(error)
+                    log(error.localizedDescription)
                     completion(.failure(error))
                 }
                 self.task = nil
@@ -57,7 +57,7 @@ final class OAuth2Service {
     
     private func makeOAuthTokenRequest(code: String) -> URLRequest? {
         guard var urlComponents = URLComponents(string: "https://unsplash.com/oauth/token") else {
-            print("url components error!")
+            log(URLError(.badURL))
             return nil
         }
         

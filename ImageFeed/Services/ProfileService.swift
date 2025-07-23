@@ -47,7 +47,7 @@ final class ProfileService {
                 self.profile = profile
                 completion(.success(profile))
             case .failure(let error):
-                print(error)
+                log(error.localizedDescription)
                 completion(.failure(error))
             }
             self.task = nil
@@ -60,7 +60,7 @@ final class ProfileService {
     // MARK: - Private func
     private func makeProfileRequest(_ token: String) -> URLRequest? {
         guard let url = URL(string: "https://api.unsplash.com/me") else {
-            print(URLError(.badURL))
+            log(URLError(.badURL))
             return nil
         }
                 
