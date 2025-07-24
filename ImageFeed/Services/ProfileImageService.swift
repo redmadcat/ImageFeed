@@ -14,7 +14,7 @@ private struct UserResult: Codable {
 final class ProfileImageService {
     // MARK: - Definition
     private let urlSession = URLSession.shared
-    private let oauth2Storage = OAuth2TokenStorage()
+    private let oauth2Storage = OAuth2TokenStorage.shared
     private var task: URLSessionTask?
     private(set) var avatarURL: String?
         

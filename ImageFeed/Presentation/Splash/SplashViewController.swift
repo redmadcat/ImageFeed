@@ -11,7 +11,7 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
     // MARK: - Definition
     private let showAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     private let tabBarViewControllerIdentifier = "TabBarViewController"
-    private let oauth2Storage = OAuth2TokenStorage()
+    private let oauth2Storage = OAuth2TokenStorage.shared
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
     

@@ -12,7 +12,7 @@ enum AuthServiceError: Error {
 }
 
 final class OAuth2Service {
-    private let oauth2Storage = OAuth2TokenStorage()
+    private let oauth2Storage = OAuth2TokenStorage.shared
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?
     private var lastCode: String?
