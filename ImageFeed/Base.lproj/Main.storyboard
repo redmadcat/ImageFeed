@@ -13,7 +13,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="7OB-HK-ypL">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarViewController" id="jzm-Qp-Grx" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" id="jzm-Qp-Grx" customClass="TabBarController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="b9N-fE-GdF">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -23,10 +23,6 @@
                             <color key="backgroundColor" name="YP Black"/>
                         </tabBarAppearance>
                     </tabBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="CBv-s7-vvC"/>
-                        <segue destination="d8O-EA-Rb7" kind="relationship" relationship="viewControllers" id="F8J-My-oap"/>
-                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H1t-xg-FzE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -35,7 +31,7 @@
         <!--ImageList-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ImageList" title="ImageList" id="BYZ-38-t0r" customClass="ImagesListViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImagesListViewController" title="ImageList" id="BYZ-38-t0r" customClass="ImagesListViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -133,23 +129,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1079.7101449275362" y="-348.21428571428572"/>
-        </scene>
-        <!--Profile-->
-        <scene sceneID="qRF-8u-1Ye">
-            <objects>
-                <viewController storyboardIdentifier="Profile" title="Profile" id="d8O-EA-Rb7" customClass="ProfileViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="UIo-i4-MhZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="fkJ-9e-5jy"/>
-                        <color key="backgroundColor" name="YP Black"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="" image="TabProfileActive" id="C2a-dP-7Fh"/>
-                    <navigationItem key="navigationItem" title="Title" id="fMw-t5-hlO" userLabel="Navigation Item"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Do-Cx-R9k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1079.7101449275362" y="332.8125"/>
         </scene>
         <!--SingleImage-->
         <scene sceneID="4kw-ek-5n2">
@@ -371,7 +350,6 @@
         <image name="Share" width="50" height="50"/>
         <image name="SplashScreenLogo" width="73" height="75.5"/>
         <image name="TabEditorialActive" width="30" height="30"/>
-        <image name="TabProfileActive" width="30" height="30"/>
         <namedColor name="YP Black">
             <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
