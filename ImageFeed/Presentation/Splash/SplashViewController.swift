@@ -18,29 +18,41 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
     // MARK: - Lifecycle
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        configureLayout()
 
         if let token = oauth2Storage.token {
             fetchProfile(token)
         } else {
-            performSegue(withIdentifier: showAuthenticationScreenSegueIdentifier, sender: nil)
+            presentAuthViewController()
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == showAuthenticationScreenSegueIdentifier {
-            guard
-                let navigationController = segue.destination as? UINavigationController,
-                let viewController = navigationController.viewControllers.first as? AuthViewController
-            else {
-                fatalError("Invalid segue destination \(showAuthenticationScreenSegueIdentifier)!")
-            }
-            viewController.delegate = self
-        } else {
-            super.prepare(for: segue, sender: sender)
-        }
-    }
-        
     // MARK: - Private func
+    private func configureLayout() {
+        view.backgroundColor = .ypBlack
+        
+        let imageView = getSplashImageView()
+        
+        view.addSubview(imageView)
+        
+        NSLayoutConstraint.activate([
+            imageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
+        ])
+    }
+    
+    private func presentAuthViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        guard let authViewController = storyboard.instantiateViewController(
+            withIdentifier: "AuthViewController") as? AuthViewController else {
+            fatalError("cannot get AuthViewController at identifier")
+        }
+        authViewController.delegate = self
+        authViewController.modalPresentationStyle = .fullScreen
+        present(authViewController, animated: true)
+    }
+    
     private func switchToTabBarController() {
         guard let window = UIApplication.shared.windows.first else {
             fatalError("Invalid window configuration")
@@ -65,9 +77,16 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
                 profileImageService.fetchProfileImageURL(username: profile.username) { _ in }
                 self.switchToTabBarController()
             case .failure(let error):
-                print(error)
+                log(error.localizedDescription)
             }
         }
+    }
+    
+    private func getSplashImageView() -> UIView {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "SplashScreenLogo")
+        return imageView
     }
         
     // MARK: - AuthViewControllerDelegate
@@ -81,3 +100,18 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
         fetchProfile(token)
     }
 }
+
+#if DEBUG
+import SwiftUI
+
+@available(iOS 13, *)
+struct SplashViewControllerPreview: PreviewProvider {
+    static var previews: some View {
+        ForEach(UIViewController.devices, id: \.self) { deviceName in
+            SplashViewController().toPreview()
+                .previewDevice(PreviewDevice(rawValue: deviceName))
+                .previewDisplayName(deviceName)
+        }
+    }
+}
+#endif
