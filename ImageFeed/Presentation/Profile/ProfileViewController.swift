@@ -65,6 +65,8 @@ final class ProfileViewController: UIViewController {
     }
     
     private func configureLayout() {
+        view.backgroundColor = .ypBlack
+        
         let logoutButton = getLogoutButton()
         let profileImageView = getProfileImageView()
         let profileNameLabel = getProfileNameLabel()
@@ -146,7 +148,7 @@ import SwiftUI
 struct ProfileViewControllerPreview: PreviewProvider {
     static var previews: some View {
         ForEach(UIViewController.devices, id: \.self) { deviceName in
-            UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "Profile").toPreview()
+            ProfileViewController().toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
         }
