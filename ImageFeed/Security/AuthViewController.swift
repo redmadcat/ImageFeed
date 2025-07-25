@@ -41,6 +41,17 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
         navigationItem.backBarButtonItem?.tintColor = UIColor(named: "YP Black")
     }
     
+    private func showAuthErrorAlert() {
+        let alert = UIAlertController(
+            title: "Что-то пошло не так",
+            message: "Не удалось войти в систему",
+            preferredStyle: .alert)
+
+        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - WebViewViewControllerDelegate
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         vc.dismiss(animated: true)
@@ -53,16 +64,8 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
             case .success:
                 self.delegate?.didAuthenticate(self)
             case .failure(let error):
-                print(error)
-                
-                let alert = UIAlertController(
-                    title: "Something went wrong", //Что-то пошло не так
-                    message: "Couldn't log in", //Не удалось войти в систему
-                    preferredStyle: .alert)
-
-                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                alert.addAction(action)
-                self.present(alert, animated: true, completion: nil)
+                print(error.localizedDescription)
+                self.showAuthErrorAlert()
             }
         }
     }
@@ -79,7 +82,7 @@ import SwiftUI
 struct AuthViewControllerPreview: PreviewProvider {
     static var previews: some View {
         ForEach(UIViewController.devices, id: \.self) { deviceName in
-            UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "AuthView").toPreview()
+            UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "AuthViewController").toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
         }
