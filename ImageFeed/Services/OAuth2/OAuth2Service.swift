@@ -12,6 +12,7 @@ enum AuthServiceError: Error {
 }
 
 final class OAuth2Service {
+    // MARK: - Definition
     private let oauth2Storage = OAuth2TokenStorage.shared
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?
@@ -21,6 +22,7 @@ final class OAuth2Service {
     
     private init() { }
     
+    // MARK: - Lifecycle
     func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
         guard lastCode != code else {
             completion(.failure(AuthServiceError.invalidRequest))
@@ -55,6 +57,7 @@ final class OAuth2Service {
         task.resume()
     }
     
+    // MARK: - Private func
     private func makeOAuthTokenRequest(code: String) -> URLRequest? {
         guard var urlComponents = URLComponents(string: "https://unsplash.com/oauth/token") else {
             log(URLError(.badURL))
