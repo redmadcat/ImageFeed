@@ -64,7 +64,7 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
             case .success:
                 self.delegate?.didAuthenticate(self)
             case .failure(let error):
-                print(error.localizedDescription)
+                log(error.localizedDescription)
                 self.showAuthErrorAlert()
             }
         }
