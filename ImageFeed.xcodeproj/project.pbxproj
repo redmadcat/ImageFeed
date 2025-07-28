@@ -170,9 +170,8 @@
 		947D8D4A2E17F6C80009A161 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				9469C2FA2E2E058D0097C84B /* ProfileImageService.swift */,
-				9469C2F22E2A11850097C84B /* ProfileService.swift */,
-				947D8D4C2E17F74E0009A161 /* OAuth2Service.swift */,
+				94A3D7E02E3786C000BC89E0 /* Profile */,
+				94A3D7DF2E3786B500BC89E0 /* OAuth2 */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -182,7 +181,6 @@
 			children = (
 				9469C2FC2E2E0F9F0097C84B /* ProfileImage.swift */,
 				9469C2F42E2A13520097C84B /* Profile.swift */,
-				947D8D532E1BC2810009A161 /* OAuth2TokenStorage.swift */,
 				947D8D512E180AC80009A161 /* OAuthTokenResponseBody.swift */,
 			);
 			path = Models;
@@ -218,6 +216,24 @@
 				949D9E392DFCB34000C3D9F5 /* ImagesListCell.swift */,
 			);
 			path = ImageList;
+			sourceTree = "<group>";
+		};
+		94A3D7DF2E3786B500BC89E0 /* OAuth2 */ = {
+			isa = PBXGroup;
+			children = (
+				947D8D4C2E17F74E0009A161 /* OAuth2Service.swift */,
+				947D8D532E1BC2810009A161 /* OAuth2TokenStorage.swift */,
+			);
+			path = OAuth2;
+			sourceTree = "<group>";
+		};
+		94A3D7E02E3786C000BC89E0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9469C2FA2E2E058D0097C84B /* ProfileImageService.swift */,
+				9469C2F22E2A11850097C84B /* ProfileService.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		94CA760A2E0157BE0037986A /* Presentation */ = {
