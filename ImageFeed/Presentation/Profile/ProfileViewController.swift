@@ -109,6 +109,7 @@ final class ProfileViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "Avatar")
         imageView.tintColor = .ypGray
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }
     
