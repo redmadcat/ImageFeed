@@ -40,6 +40,7 @@
 		949D9E3D2DFD59E000C3D9F5 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9E3C2DFD59D600C3D9F5 /* Date+Extensions.swift */; };
 		949D9E3F2DFD93C300C3D9F5 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9E3E2DFD93B200C3D9F5 /* UIViewController+Extensions.swift */; };
 		94BAB8752E30CE8B000334B7 /* LogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BAB8742E30CE80000334B7 /* LogHelper.swift */; };
+		94BD676A2E3BD2680088C906 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BD67692E3BD2680088C906 /* WebKit.framework */; };
 		94CA760D2E01580C0037986A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CA760C2E0157FE0037986A /* ProfileViewController.swift */; };
 		94CA760F2E019AD40037986A /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CA760E2E019AC90037986A /* SingleImageViewController.swift */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,7 @@
 		949D9E3C2DFD59D600C3D9F5 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		949D9E3E2DFD93B200C3D9F5 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		94BAB8742E30CE80000334B7 /* LogHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHelper.swift; sourceTree = "<group>"; };
+		94BD67692E3BD2680088C906 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		94CA760C2E0157FE0037986A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		94CA760E2E019AC90037986A /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +90,7 @@
 			files = (
 				9403D8722E31F4B100727E83 /* Kingfisher in Frameworks */,
 				9469C2EF2E28EE3B0097C84B /* ProgressHUD in Frameworks */,
+				94BD676A2E3BD2680088C906 /* WebKit.framework in Frameworks */,
 				9403D8752E3212EC00727E83 /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				944021D12DF98E0C008955DE /* ImageFeed */,
+				94BD67682E3BD2670088C906 /* Frameworks */,
 				944021B12DF98C36008955DE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -234,6 +238,14 @@
 				9469C2F22E2A11850097C84B /* ProfileService.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		94BD67682E3BD2670088C906 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94BD67692E3BD2680088C906 /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		94CA760A2E0157BE0037986A /* Presentation */ = {
