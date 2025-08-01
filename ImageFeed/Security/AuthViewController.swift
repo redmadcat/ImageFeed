@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import ProgressHUD
 
 final class AuthViewController: UIViewController, WebViewViewControllerDelegate {
     // MARK: - Definition
@@ -43,11 +42,11 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
     
     private func showAuthErrorAlert() {
         let alert = UIAlertController(
-            title: "Что-то пошло не так",
+            title: "Что-то пошло не так(",
             message: "Не удалось войти в систему",
             preferredStyle: .alert)
 
-        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
