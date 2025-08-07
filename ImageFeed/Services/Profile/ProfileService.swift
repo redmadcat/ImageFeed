@@ -59,7 +59,7 @@ final class ProfileService {
     
     // MARK: - Private func
     private func makeProfileRequest(_ token: String) -> URLRequest? {
-        guard let url = URL(string: "https://api.unsplash.com/me") else {
+        guard let url = URL(string: Constants.profileRequest) else {
             log(URLError(.badURL))
             return nil
         }
