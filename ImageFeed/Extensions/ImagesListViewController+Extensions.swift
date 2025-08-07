@@ -23,6 +23,12 @@ extension ImagesListViewController: UITableViewDataSource {
         configCell(for: imageListCell, with: indexPath)
         return imageListCell
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        if indexPath.row + 1 == photos.count {
+//            fetchPhotosNextPage()
+//        }
+    }
 }
 
 // MARK: - UITableViewDelegate
