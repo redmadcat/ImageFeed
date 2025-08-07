@@ -75,6 +75,11 @@ final class ImagesListService {
                     self.photos.append(photo)
                 }
                 completion(.success(photos))
+                NotificationCenter.default
+                    .post(
+                        name: ImagesListService.didChangeNotification,
+                        object: self
+                    )
             case .failure(let error):
                 log(error.localizedDescription)
                 completion(.failure(error))
