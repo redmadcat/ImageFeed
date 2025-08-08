@@ -43,17 +43,13 @@ final class ImagesListService {
     static let didChangeNotification = Notification.Name(rawValue: "ImagesListServiceDidChange")
     
     // MARK: - Lifecycle
-    func fetchPhotosNextPage() {
-        let nextPage = (lastLoadedPage ?? 0) + 1
-//        let nextPage = (lastLoadedPage?.number ?? 0) + 1
-    }
-            
-    // MARK: - Private func
-    private func fetchImages(_ token: String, completion: @escaping (Result<[Photo], Error>) -> Void) {
+    private func fetchPhotosNextPage() {
         task?.cancel()
         
-        guard let request = makeImagesRequest(token) else {
-            completion(.failure(URLError(.badURL)))
+        let nextPage = (lastLoadedPage ?? 0) + 1
+        
+        guard let request = makeImagesRequest() else {
+            log(URLError(.badURL))
             return
         }
         
@@ -74,7 +70,6 @@ final class ImagesListService {
                     )
                     self.photos.append(photo)
                 }
-                completion(.success(photos))
                 NotificationCenter.default
                     .post(
                         name: ImagesListService.didChangeNotification,
@@ -82,7 +77,6 @@ final class ImagesListService {
                     )
             case .failure(let error):
                 log(error.localizedDescription)
-                completion(.failure(error))
             }
             self.task = nil
         }
@@ -91,14 +85,14 @@ final class ImagesListService {
         task.resume()
     }
     
-    private func makeImagesRequest(_ token: String) -> URLRequest? {
+    // MARK: - Private func
+    private func makeImagesRequest() -> URLRequest? {
         guard let url = URL(string: Constants.imagesRequest) else {
             log(URLError(.badURL))
             return nil
         }
                 
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
         return request
     }
