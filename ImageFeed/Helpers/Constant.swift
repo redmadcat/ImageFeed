@@ -19,6 +19,7 @@ enum Constants {
     static let profileImageRequest = "https://api.unsplash.com/users/"
     static let profileRequest = "https://api.unsplash.com/me"
     static let imagesRequest = "https://api.unsplash.com/photos"
+    static let tokenRequest = "https://unsplash.com/oauth/token"
 }
 
 
