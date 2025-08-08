@@ -7,10 +7,6 @@
 
 import Foundation
 
-private struct PhotoResults: Codable {
-    let items: [PhotoResult]
-}
-
 private struct PhotoResult: Codable {
     let id: String
     let createdAt: String
@@ -21,7 +17,7 @@ private struct PhotoResult: Codable {
     let blurHash: String
     let likes: Int
     let likedByUser: Bool
-    let description: String
+    let description: String?
     let urls: UrlsResult
 }
 
@@ -44,23 +40,29 @@ final class ImagesListService {
     static let didChangeNotification = Notification.Name(rawValue: "ImagesListServiceDidChange")
     
     // MARK: - Lifecycle
-    private func fetchPhotosNextPage() {
+    func fetchPhotosNextPage() {
         if task != nil { return }
                 
         let nextPage = (lastLoadedPage ?? 0) + 1
         
-        guard let request = makeImagesRequest(nextPage) else {
+        guard let token = OAuth2TokenStorage.shared.token else {
+            log(NSError(domain: "ImagesListService", code: 401,
+                        userInfo: [NSLocalizedDescriptionKey: "Authorization token missing"]))
+            return
+        }
+        
+        guard let request = makeImagesRequest(token: token, nextPage) else {
             log(URLError(.badURL))
             return
         }
         
-        let task = urlSession.objectTask(for: request) { [weak self] (result: Result<PhotoResults, Error>) in
+        let task = urlSession.objectTask(for: request) { [weak self] (result: Result<Array<PhotoResult>, Error>) in
             guard let self else { return }
                         
             DispatchQueue.main.async {
                 switch result {
                 case .success(let result):
-                    result.items.forEach { item in
+                    result.forEach { item in
                         let photo = Photo(
                             id: item.id,
                             size: CGSize(width: item.width, height: item.height),
@@ -89,13 +91,14 @@ final class ImagesListService {
     }
     
     // MARK: - Private func
-    private func makeImagesRequest(_ page: Int) -> URLRequest? {
+    private func makeImagesRequest(token: String, _ page: Int) -> URLRequest? {
         guard let url = URL(string: Constants.imagesRequest) else {
             log(URLError(.badURL))
             return nil
         }
         
         var request = URLRequest(url: url)
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("\(page)", forHTTPHeaderField: "page")
         request.setValue("\(perPage)", forHTTPHeaderField: "per_page")
         request.httpMethod = "GET"
