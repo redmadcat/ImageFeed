@@ -35,6 +35,7 @@ private struct UrlsResult: Codable {
 
 final class ImagesListService {
     // MARK: - Definition
+    private let perPage = 10
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?
     private(set) var photos: [Photo] = []
@@ -44,11 +45,11 @@ final class ImagesListService {
     
     // MARK: - Lifecycle
     private func fetchPhotosNextPage() {
-        task?.cancel()
-        
+        if task != nil { return }
+                
         let nextPage = (lastLoadedPage ?? 0) + 1
         
-        guard let request = makeImagesRequest() else {
+        guard let request = makeImagesRequest(nextPage) else {
             log(URLError(.badURL))
             return
         }
@@ -56,29 +57,31 @@ final class ImagesListService {
         let task = urlSession.objectTask(for: request) { [weak self] (result: Result<PhotoResults, Error>) in
             guard let self else { return }
                         
-            switch result {
-            case .success(let result):
-                result.items.forEach { item in
-                    let photo = Photo(
-                        id: item.id,
-                        size: CGSize(width: item.width, height: item.height),
-                        createdAt: DateFormatter().date(from: item.createdAt),
-                        welcomeDescription: item.description,
-                        thumbImageURL: item.urls.thumb,
-                        largeImageURL: item.urls.full,
-                        isLiked: item.likedByUser
-                    )
-                    self.photos.append(photo)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let result):
+                    result.items.forEach { item in
+                        let photo = Photo(
+                            id: item.id,
+                            size: CGSize(width: item.width, height: item.height),
+                            createdAt: DateFormatter().date(from: item.createdAt),
+                            welcomeDescription: item.description,
+                            thumbImageURL: item.urls.thumb,
+                            largeImageURL: item.urls.full,
+                            isLiked: item.likedByUser
+                        )
+                        self.photos.append(photo)
+                    }
+                    NotificationCenter.default
+                        .post(
+                            name: ImagesListService.didChangeNotification,
+                            object: self
+                        )
+                case .failure(let error):
+                    log(error.localizedDescription)
                 }
-                NotificationCenter.default
-                    .post(
-                        name: ImagesListService.didChangeNotification,
-                        object: self
-                    )
-            case .failure(let error):
-                log(error.localizedDescription)
+                self.task = nil
             }
-            self.task = nil
         }
         
         self.task = task
@@ -86,13 +89,15 @@ final class ImagesListService {
     }
     
     // MARK: - Private func
-    private func makeImagesRequest() -> URLRequest? {
+    private func makeImagesRequest(_ page: Int) -> URLRequest? {
         guard let url = URL(string: Constants.imagesRequest) else {
             log(URLError(.badURL))
             return nil
         }
-                
+        
         var request = URLRequest(url: url)
+        request.setValue("\(page)", forHTTPHeaderField: "page")
+        request.setValue("\(perPage)", forHTTPHeaderField: "per_page")
         request.httpMethod = "GET"
         return request
     }
