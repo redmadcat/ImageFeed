@@ -15,9 +15,21 @@ final class ImagesListCell: UITableViewCell {
     
     // MARK: - Definition
     static let reuseIdentifier = "ImagesListCell"
+    weak var delegate: ImagesListCellDelegate?
     
+    // MARK: - Lifecycle
     override func prepareForReuse() {
         super.prepareForReuse()
         cellImage.kf.cancelDownloadTask()
+    }
+    
+    func setIsLiked(isLiked: Bool) {
+        let likeImage = UIImage(named: isLiked ? "FavoritesActive" : "FavoritesNoActive")
+        likeButton.setImage(likeImage, for: .normal)
+    }
+    
+    // MARK: - @IBAction
+    @IBAction private func likeButtonClicked() {
+        delegate?.imageListCellDidTapLike(self)
     }
 }
