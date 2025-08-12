@@ -35,15 +35,18 @@ final class ImagesListService {
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?
     private(set) var photos: [Photo] = []
-    private var lastLoadedPage: Int?
+    private var lastLoadedPage: Int = 0
         
     static let didChangeNotification = Notification.Name(rawValue: "ImagesListServiceDidChange")
+    static let shared = ImagesListService()
+    
+    private init() { }
     
     // MARK: - Lifecycle
     func fetchPhotosNextPage() {
         if task != nil { return }
-                
-        let nextPage = (lastLoadedPage ?? 0) + 1
+        lastLoadedPage += 1
+        let nextPage = lastLoadedPage
         
         guard let token = OAuth2TokenStorage.shared.token else {
             log(NSError(domain: "ImagesListService", code: 401,
@@ -92,15 +95,22 @@ final class ImagesListService {
     
     // MARK: - Private func
     private func makeImagesRequest(token: String, _ page: Int) -> URLRequest? {
-        guard let url = URL(string: Constants.imagesRequest) else {
+        guard var urlComponents = URLComponents(string: Constants.imagesRequest) else {
             log(URLError(.badURL))
             return nil
         }
         
-        var request = URLRequest(url: url)
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        request.setValue("\(page)", forHTTPHeaderField: "page")
-        request.setValue("\(perPage)", forHTTPHeaderField: "per_page")
+        urlComponents.queryItems = [
+            URLQueryItem(name: "client_id", value: Constants.accessKey),
+            URLQueryItem(name: "page", value: "\(page)"),
+            URLQueryItem(name: "per_page", value: "\(perPage)")
+        ]
+        
+        guard let photosUrl = urlComponents.url else {
+            return nil
+        }
+        
+        var request = URLRequest(url: photosUrl)
         request.httpMethod = "GET"
         return request
     }
