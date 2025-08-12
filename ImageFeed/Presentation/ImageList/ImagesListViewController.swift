@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import Kingfisher
 
-final class ImagesListViewController: UIViewController {
+final class ImagesListViewController: UIViewController, ImagesListCellDelegate {
     // MARK: - @IBOutlet
     @IBOutlet weak private var tableView: UITableView!
     
@@ -36,11 +35,8 @@ final class ImagesListViewController: UIViewController {
             guard
                 let viewController = segue.destination as? SingleImageViewController,
                 let indexPath = sender as? IndexPath
-            else {
-                fatalError("Invalid segue destination!")
-            }
-//            viewController.image = UIImage(named: photoNames[indexPath.row])
-//            viewController.image?.kf. =  self.photos[safe: indexPath.row]
+            else { fatalError("Invalid segue destination!") }
+            viewController.fullImageUrl = self.photos[safe: indexPath.row]?.largeImageURL
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -53,6 +49,7 @@ final class ImagesListViewController: UIViewController {
             .withTintColor(.lightGray, renderingMode: .alwaysOriginal)
             .withConfiguration(UIImage.SymbolConfiguration(pointSize: 70, weight: .regular, scale: .large))
         
+        cell.delegate = self
         cell.cellImage.kf.indicatorType = .activity
         cell.cellImage.kf.setImage(
             with: URL(string: photo.thumbImageURL),
@@ -62,6 +59,7 @@ final class ImagesListViewController: UIViewController {
                 .cacheOriginalImage,
                 .forceRefresh
             ]) { result in
+//                self.tableView.reloadRows(at: [indexPath], with: .automatic)
                 switch result {
                 case .success(let value):
                     print(value.image)
@@ -73,12 +71,31 @@ final class ImagesListViewController: UIViewController {
             }
         
         let likeImage = UIImage(named: photo.isLiked ? "FavoritesActive" : "FavoritesNoActive")
-        cell.dateLabel.text = photo.createdAt?.longDateString
         cell.likeButton.setImage(likeImage, for: .normal)
+        cell.dateLabel.text = photo.createdAt?.longDateString
     }
     
     func getSingleImageSegueIdentifier() -> String {
         "ShowSingleImage"
+    }
+    
+    // MARK: - ImagesListCellDelegate
+    func imageListCellDidTapLike(_ cell: ImagesListCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let photo = photos[indexPath.row]
+     
+        UIBlockingProgressHUD.show()
+        imagesListService.changeLike(photoId: photo.id, isLike: photo.isLiked) { result in
+            switch result {
+            case .success:
+                self.photos = self.imagesListService.photos
+                cell.setIsLiked(isLiked: self.photos[indexPath.row].isLiked)
+                UIBlockingProgressHUD.hide()
+            case .failure:
+                UIBlockingProgressHUD.hide()
+                // TODO: Add UIAlertController error description
+            }
+        }
     }
     
     // MARK: - Private func
