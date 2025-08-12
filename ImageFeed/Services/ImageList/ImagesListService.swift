@@ -47,14 +47,8 @@ final class ImagesListService {
         if task != nil { return }
         lastLoadedPage += 1
         let nextPage = lastLoadedPage
-        
-        guard let token = OAuth2TokenStorage.shared.token else {
-            log(NSError(domain: "ImagesListService", code: 401,
-                        userInfo: [NSLocalizedDescriptionKey: "Authorization token missing"]))
-            return
-        }
-        
-        guard let request = makeImagesRequest(token: token, nextPage) else {
+                
+        guard let request = makeImagesRequest(nextPage) else {
             log(URLError(.badURL))
             return
         }
@@ -93,8 +87,46 @@ final class ImagesListService {
         task.resume()
     }
     
+    func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Void, Error>) -> Void) {
+        if task != nil { return }
+        
+        guard let request = makeLikeRequest(photoId: photoId, isLike: isLike) else {
+            log(URLError(.badURL))
+            return
+        }
+        
+        let task = urlSession.data(for: request) { [weak self] (result: Result<Data, Error>) in
+            guard let self else { return }
+                        
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let result):
+                    if let index = self.photos.firstIndex(where: { $0.id == photoId }) {
+                        let photo = self.photos[index]
+                        let newPhoto = Photo(
+                            id: photoId,
+                            size: photo.size,
+                            createdAt: photo.createdAt,
+                            welcomeDescription: photo.welcomeDescription,
+                            thumbImageURL: photo.thumbImageURL,
+                            largeImageURL: photo.largeImageURL,
+                            isLiked: !photo.isLiked)
+                        self.photos[index] = newPhoto
+//                        self.photos = self.photos.withReplaced(itemAt: index, newValue: newPhoto)
+                    }
+                case .failure(let error):
+                    log(error.localizedDescription)
+                }
+                self.task = nil
+            }
+        }
+        
+        self.task = task
+        task.resume()
+    }
+    
     // MARK: - Private func
-    private func makeImagesRequest(token: String, _ page: Int) -> URLRequest? {
+    private func makeImagesRequest(_ page: Int) -> URLRequest? {
         guard var urlComponents = URLComponents(string: Constants.imagesRequest) else {
             log(URLError(.badURL))
             return nil
@@ -112,6 +144,27 @@ final class ImagesListService {
         
         var request = URLRequest(url: photosUrl)
         request.httpMethod = "GET"
+        return request
+    }
+    
+    private func makeLikeRequest(photoId: String, isLike: Bool) -> URLRequest? {
+        guard var urlComponents = URLComponents(string: Constants.imagesRequest) else {
+            log(URLError(.badURL))
+            return nil
+        }
+        
+        urlComponents.queryItems = [
+            URLQueryItem(name: "client_id", value: Constants.accessKey),
+            URLQueryItem(name: "id", value: "\(photoId)"),
+            URLQueryItem(name: "like", value: "\(isLike)")
+        ]
+        
+        guard let photosUrl = urlComponents.url else {
+            return nil
+        }
+        
+        var request = URLRequest(url: photosUrl)
+        request.httpMethod = isLike ? "POST" : "DELETE"
         return request
     }
 }
