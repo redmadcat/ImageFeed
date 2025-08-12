@@ -22,6 +22,25 @@ final class SingleImageViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    var fullImageUrl: String? {
+        didSet {
+            guard isViewLoaded, let fullImageUrl else { return }
+            
+            UIBlockingProgressHUD.show()
+            imageView.kf.setImage(with: URL(string: fullImageUrl)) { [weak self] result in
+                UIBlockingProgressHUD.hide()
+                
+                guard let self else { return }
+                switch result {
+                case .success(let imageResult):
+                    self.rescaleAndCenterImageInScrollView(image: imageResult.image)
+                case .failure:
+                    self.showError()
+                }
+            }
+        }
+    }
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +69,10 @@ final class SingleImageViewController: UIViewController, UIScrollViewDelegate {
         let x = (newContentSize.width - visibleRectSize.width) / 2
         let y = (newContentSize.height - visibleRectSize.height) / 2
         scrollView.setContentOffset(CGPoint(x: x, y: y), animated: false)
+    }
+    
+    private func showError() {
+        // TODO: Add AlertViewController
     }
     
     // MARK: - UIScrollViewDelegate
