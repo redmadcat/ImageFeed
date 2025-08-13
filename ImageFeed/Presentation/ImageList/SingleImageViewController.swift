@@ -13,47 +13,36 @@ final class SingleImageViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak private var scrollView: UIScrollView!
     
     // MARK: - Definition
-    var image: UIImage? {
-        didSet {
-            guard isViewLoaded, let image else { return }
-            imageView.image = image
-            imageView.frame.size = image.size
-            rescaleAndCenterImageInScrollView(image: image)
-        }
-    }
-    
-    var fullImageUrl: String? {
-        didSet {
-            guard isViewLoaded, let fullImageUrl else { return }
-            
-            UIBlockingProgressHUD.show()
-            imageView.kf.setImage(with: URL(string: fullImageUrl)) { [weak self] result in
-                UIBlockingProgressHUD.hide()
-                
-                guard let self else { return }
-                switch result {
-                case .success(let imageResult):
-                    self.rescaleAndCenterImageInScrollView(image: imageResult.image)
-                case .failure:
-                    self.showError()
-                }
-            }
-        }
-    }
+    var fullImageUrl: String?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 1.25
-        
-        guard let image else { return }
-        imageView.image = image
-        imageView.frame.size = image.size
-        rescaleAndCenterImageInScrollView(image: image)
+        setImage()
     }
     
     // MARK: - Private func
+    private func setImage() {
+        guard let fullImageUrl else { return }
+        
+        UIBlockingProgressHUD.show()
+        imageView.kf.setImage(with: URL(string: fullImageUrl)) { [weak self] result in
+            UIBlockingProgressHUD.hide()
+            
+            guard let self else { return }
+            switch result {
+            case .success(let imageResult):
+                self.imageView.image = imageResult.image
+                self.imageView.frame.size = imageResult.image.size
+                self.rescaleAndCenterImageInScrollView(image: imageResult.image)
+            case .failure:
+                self.showError()
+            }
+        }
+    }
+    
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
         let minZoomScale = scrollView.minimumZoomScale
         let maxZoomScale = scrollView.maximumZoomScale
@@ -72,7 +61,19 @@ final class SingleImageViewController: UIViewController, UIScrollViewDelegate {
     }
     
     private func showError() {
-        // TODO: Add AlertViewController
+        let alert = UIAlertController(
+            title: "Что-то пошло не так(",
+            message: "Попробовать ещё раз?",
+            preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Не надо", style: .default, handler: nil)
+        let repeatAction = UIAlertAction(title: "Повторить", style: .default, handler: { _ in
+            self.setImage()
+        })
+        
+        alert.addAction(cancelAction)
+        alert.addAction(repeatAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: - UIScrollViewDelegate
@@ -86,7 +87,7 @@ final class SingleImageViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction private func didTapShareButton() {
-        guard let image else { return }
+        guard let image = imageView.image else { return }
         let share = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         share.overrideUserInterfaceStyle = .dark
         present(share, animated: true, completion: nil)
