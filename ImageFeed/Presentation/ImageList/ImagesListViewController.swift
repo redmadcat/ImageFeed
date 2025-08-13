@@ -55,26 +55,18 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate {
         cell.cellImage.kf.indicatorType = .activity
         cell.cellImage.kf.setImage(
             with: URL(string: photo.thumbImageURL),
-            placeholder: placeholderImage,
-            options: [
-                .scaleFactor(UIScreen.main.scale),
-                .cacheOriginalImage,
-                .forceRefresh
-            ]) { result in
-//                self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                switch result {
-                case .success(let value):
-                    print(value.image)
-                    print(value.cacheType)
-                    print(value.source)
-                case .failure(let error):
-                    log(error.localizedDescription)
-                }
+            placeholder: placeholderImage
+        ) { result in
+            switch result {
+            case .success:
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                let likeImage = UIImage(named: photo.isLiked ? "FavoritesActive" : "FavoritesNoActive")
+                cell.likeButton.setImage(likeImage, for: .normal)
+                cell.dateLabel.text = photo.createdAt?.longDateString
+            case .failure(let error):
+                log(error.localizedDescription)
             }
-        
-        let likeImage = UIImage(named: photo.isLiked ? "FavoritesActive" : "FavoritesNoActive")
-        cell.likeButton.setImage(likeImage, for: .normal)
-        cell.dateLabel.text = photo.createdAt?.longDateString
+        }
     }
     
     func getSingleImageSegueIdentifier() -> String {
@@ -88,7 +80,7 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate {
             let photo = self.photos[safe: indexPath.row] else { return }
      
         UIBlockingProgressHUD.show()
-        imagesListService.changeLike(photoId: photo.id, isLike: photo.isLiked) { result in
+        imagesListService.changeLike(photoId: photo.id, isLike: !photo.isLiked) { result in
             switch result {
             case .success:
                 self.photos = self.imagesListService.photos
