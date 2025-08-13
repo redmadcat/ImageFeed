@@ -47,6 +47,7 @@
 		94BD676A2E3BD2680088C906 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BD67692E3BD2680088C906 /* WebKit.framework */; };
 		94CA760D2E01580C0037986A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CA760C2E0157FE0037986A /* ProfileViewController.swift */; };
 		94CA760F2E019AD40037986A /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CA760E2E019AC90037986A /* SingleImageViewController.swift */; };
+		94F979F92E4CBAFA00F6E497 /* ProfileLogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F979F82E4CBAEE00F6E497 /* ProfileLogoutService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,7 @@
 		94BD67692E3BD2680088C906 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		94CA760C2E0157FE0037986A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		94CA760E2E019AC90037986A /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
+		94F979F82E4CBAEE00F6E497 /* ProfileLogoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLogoutService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +256,7 @@
 		94A3D7E02E3786C000BC89E0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				94F979F82E4CBAEE00F6E497 /* ProfileLogoutService.swift */,
 				9469C2FA2E2E058D0097C84B /* ProfileImageService.swift */,
 				9469C2F22E2A11850097C84B /* ProfileService.swift */,
 			);
@@ -396,6 +399,7 @@
 				947D8D562E1BE20C0009A161 /* AuthViewControllerDelegate.swift in Sources */,
 				9403D8772E322F9400727E83 /* TabBarController.swift in Sources */,
 				94A088622E447B1100EFFFE9 /* Photo.swift in Sources */,
+				94F979F92E4CBAFA00F6E497 /* ProfileLogoutService.swift in Sources */,
 				949D9E3D2DFD59E000C3D9F5 /* Date+Extensions.swift in Sources */,
 				94BAB8752E30CE8B000334B7 /* LogHelper.swift in Sources */,
 				942F62B82E4B3B36008CE5E3 /* ImagesListCellDelegate.swift in Sources */,
