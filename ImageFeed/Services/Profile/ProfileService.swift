@@ -28,7 +28,7 @@ final class ProfileService {
     func fetchProfile(_ token: String, completion: @escaping (Result<Profile, Error>) -> Void) {
         task?.cancel()
         
-        guard let request = makeProfileRequest(token) else {
+        guard let request = makeRequest(token) else {
             completion(.failure(URLError(.badURL)))
             return
         }
@@ -58,7 +58,7 @@ final class ProfileService {
     }
     
     // MARK: - Private func
-    private func makeProfileRequest(_ token: String) -> URLRequest? {
+    private func makeRequest(_ token: String) -> URLRequest? {
         guard let url = URL(string: Constants.profileRequest) else {
             log(URLError(.badURL))
             return nil
