@@ -34,16 +34,18 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate {
         if segue.identifier == getSingleImageSegueIdentifier() {
             guard
                 let viewController = segue.destination as? SingleImageViewController,
-                let indexPath = sender as? IndexPath
-            else { fatalError("Invalid segue destination!") }
-            viewController.fullImageUrl = self.photos[safe: indexPath.row]?.largeImageURL
+                let indexPath = sender as? IndexPath,
+                let photo = self.photos[safe: indexPath.row]
+            else { fatalError("Invalid segue destination or photo is not available!") }
+                        
+            viewController.fullImageUrl = photo.largeImageURL
         } else {
             super.prepare(for: segue, sender: sender)
         }
     }
 
     func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
-        let photo = photos[indexPath.row]
+        guard let photo = self.photos[safe: indexPath.row] else { return }
         
         let placeholderImage = UIImage(systemName: "person.circle.fill")?
             .withTintColor(.lightGray, renderingMode: .alwaysOriginal)
@@ -81,8 +83,9 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate {
     
     // MARK: - ImagesListCellDelegate
     func imageListCellDidTapLike(_ cell: ImagesListCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let photo = photos[indexPath.row]
+        guard
+            let indexPath = tableView.indexPath(for: cell),
+            let photo = self.photos[safe: indexPath.row] else { return }
      
         UIBlockingProgressHUD.show()
         imagesListService.changeLike(photoId: photo.id, isLike: photo.isLiked) { result in
