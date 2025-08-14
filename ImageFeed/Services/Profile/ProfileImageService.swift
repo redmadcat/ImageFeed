@@ -63,6 +63,11 @@ final class ProfileImageService {
         task.resume()
     }
     
+    func dispose() {
+        avatarURL = nil
+        task = nil
+    }
+    
     // MARK: - Private func
     private func makeProfileImageRequest(username: String, token: String) -> URLRequest? {
         guard let url = URL(string: "\(Constants.profileImageRequest)\(username)") else {

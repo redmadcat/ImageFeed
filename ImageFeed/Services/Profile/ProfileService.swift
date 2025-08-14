@@ -57,6 +57,11 @@ final class ProfileService {
         task.resume()
     }
     
+    func dispose() {
+        profile = nil
+        task = nil
+    }
+    
     // MARK: - Private func
     private func makeRequest(_ token: String) -> URLRequest? {
         guard let url = URL(string: Constants.profileRequest) else {

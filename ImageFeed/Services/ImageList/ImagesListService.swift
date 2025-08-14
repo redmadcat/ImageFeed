@@ -125,6 +125,12 @@ final class ImagesListService {
         task.resume()
     }
     
+    func dispose() {
+        photos.removeAll()
+        lastLoadedPage = nil
+        task = nil
+    }
+    
     // MARK: - Private func
     private func makeRequest(_ page: Int) -> URLRequest? {
         guard let token = OAuth2TokenStorage.shared.token else {

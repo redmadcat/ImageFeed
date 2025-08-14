@@ -17,6 +17,7 @@ final class ProfileLogoutService {
     // MARK: - Lifecycle
     func logout() {
         cleanCookies()
+        dispose()
     }
     
     // MARK: - Private func
@@ -28,5 +29,12 @@ final class ProfileLogoutService {
                 WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
             }
         }
+    }
+    
+    private func dispose() {
+        OAuth2TokenStorage.shared.token = nil
+        ProfileImageService.shared.dispose()
+        ProfileService.shared.dispose()
+        ImagesListService.shared.dispose()
     }
 }
