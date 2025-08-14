@@ -15,10 +15,11 @@ enum Constants {
     static let authorizePath = "/oauth/authorize/native"
     static let responseType = "code"
     static let grantType = "authorization_code"
-    static let baseURL = "https://api.unsplash.com"
-    static let profileImageRequest = baseURL + "/users/"
-    static let profileRequest = baseURL + "/me"
-    static let photosRequest = baseURL + "/photos"
+    static let baseAPIURL = "https://api.unsplash.com"
+    static let baseURL = "https://unsplash.com"
+    static let profileImageRequest = baseAPIURL + "/users/"
+    static let profileRequest = baseAPIURL + "/me"
+    static let photosRequest = baseAPIURL + "/photos"
     static let tokenRequest = baseURL + "/oauth/token"
 }
 
