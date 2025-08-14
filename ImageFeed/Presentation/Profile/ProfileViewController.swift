@@ -11,6 +11,7 @@ import Kingfisher
 final class ProfileViewController: UIViewController {
     // MARK: - Definition
     private let profile = ProfileService.shared.profile
+    private let profileLogoutService = ProfileLogoutService.shared
     private var profileImageServiceObserver: NSObjectProtocol?
     
     // MARK: - Lifecycle
@@ -137,8 +138,16 @@ final class ProfileViewController: UIViewController {
         UILabel(text: profile?.bio ?? "", textColor: UIColor.ypWhite)
     }
     
+    private func resetAuth() {
+        let splashViewController = SplashViewController()
+        splashViewController.modalPresentationStyle = .fullScreen
+        present(splashViewController, animated: true)
+    }
+    
     // MARK: - Button actions
     @objc private func didTapLogoutButton() {
+        profileLogoutService.logout()
+        resetAuth()
     }
 }
 
