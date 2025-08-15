@@ -11,7 +11,7 @@ private struct UserResult: Codable {
     let profileImage: ProfileImage
 }
 
-final class ProfileImageService {
+final class ProfileImageService: ProfileLogoutProtocol, DisposableProtocol {
     // MARK: - Definition
     private let urlSession = URLSession.shared
     private let oauth2Storage = OAuth2TokenStorage.shared
@@ -21,7 +21,9 @@ final class ProfileImageService {
     static let didChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
     static let shared = ProfileImageService()
     
-    private init() { }
+    private init() {
+        subscribeLogout(self)
+    }
     
     // MARK: - Lifecycle
     func fetchProfileImageURL(username: String, _ completion: @escaping (Result<String, Error>) -> Void) {
@@ -62,7 +64,8 @@ final class ProfileImageService {
         self.task = task
         task.resume()
     }
-    
+        
+    // MARK: - DisposableProtocol
     func dispose() {
         avatarURL = nil
         task = nil

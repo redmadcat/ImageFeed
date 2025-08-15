@@ -14,7 +14,7 @@ private struct ProfileResult: Codable {
     let bio: String?
 }
 
-final class ProfileService {
+final class ProfileService: ProfileLogoutProtocol, DisposableProtocol {
     // MARK: - Definition
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?
@@ -22,7 +22,9 @@ final class ProfileService {
     
     static let shared = ProfileService()
     
-    private init() { }
+    private init() {
+        subscribeLogout(self)
+    }
     
     // MARK: - Lifecycle
     func fetchProfile(_ token: String, completion: @escaping (Result<Profile, Error>) -> Void) {
@@ -57,11 +59,12 @@ final class ProfileService {
         task.resume()
     }
     
+    // MARK: - DisposableProtocol
     func dispose() {
         profile = nil
         task = nil
     }
-    
+        
     // MARK: - Private func
     private func makeRequest(_ token: String) -> URLRequest? {
         guard let url = URL(string: Constants.profileRequest) else {

@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-final class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController, DisposableProtocol {
     // MARK: - Definition
     private let profile = ProfileService.shared.profile
     private let profileLogoutService = ProfileLogoutService.shared
@@ -29,6 +29,12 @@ final class ProfileViewController: UIViewController {
                 self.updateAvatar()
             }
         updateAvatar()
+    }
+    
+    // MARK: - DisposableProtocol
+    func dispose() {
+        profileLogoutService.dispose()
+        resetAuth()
     }
         
     // MARK: - Private func
@@ -146,8 +152,7 @@ final class ProfileViewController: UIViewController {
     
     // MARK: - Button actions
     @objc private func didTapLogoutButton() {
-        profileLogoutService.logout()
-        resetAuth()
+        dispose()
     }
 }
 

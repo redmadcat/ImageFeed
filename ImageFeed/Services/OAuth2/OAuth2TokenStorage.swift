@@ -8,10 +8,12 @@
 import Foundation
 import SwiftKeychainWrapper
 
-final class OAuth2TokenStorage {
+final class OAuth2TokenStorage: ProfileLogoutProtocol, DisposableProtocol {
     static let shared = OAuth2TokenStorage()
     
-    private init() {}
+    private init() {
+        subscribeLogout(self)
+    }
     
     private enum Keys: String {
         case bearerToken
@@ -28,5 +30,10 @@ final class OAuth2TokenStorage {
                 KeychainWrapper.standard.removeObject(forKey: Keys.bearerToken.rawValue)
             }
         }
+    }
+    
+    // MARK: - DisposableProtocol
+    func dispose() {
+        token = nil
     }
 }

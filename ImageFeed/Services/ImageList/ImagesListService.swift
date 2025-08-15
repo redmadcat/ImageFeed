@@ -29,7 +29,7 @@ private struct UrlsResult: Codable {
     let thumb: String
 }
 
-final class ImagesListService {
+final class ImagesListService: ProfileLogoutProtocol, DisposableProtocol {
     // MARK: - Definition
     private let perPage = 10
     private let urlSession = URLSession.shared
@@ -40,7 +40,9 @@ final class ImagesListService {
     static let didChangeNotification = Notification.Name(rawValue: "ImagesListServiceDidChange")
     static let shared = ImagesListService()
     
-    private init() { }
+    private init() {
+        subscribeLogout(self)
+    }
     
     // MARK: - Lifecycle
     func fetchPhotosNextPage() {
@@ -121,6 +123,7 @@ final class ImagesListService {
         task.resume()
     }
     
+    // MARK: - DisposableProtocol
     func dispose() {
         photos.removeAll()
         lastLoadedPage = nil

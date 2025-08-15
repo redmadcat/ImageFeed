@@ -8,16 +8,21 @@
 import Foundation
 import WebKit
 
-final class ProfileLogoutService {
+final class ProfileLogoutService: DisposableProtocol {
     // MARK: - Definition
+    static let didLogoutNotification = Notification.Name(rawValue: "ProfileLogoutServiceDidLogout")
     static let shared = ProfileLogoutService()
     
     private init() { }
-    
-    // MARK: - Lifecycle
-    func logout() {
+        
+    // MARK: - DisposableProtocol
+    func dispose() {
         cleanCookies()
-        dispose()
+        NotificationCenter.default
+            .post(
+                name: ProfileLogoutService.didLogoutNotification,
+                object: self
+            )
     }
     
     // MARK: - Private func
@@ -29,12 +34,5 @@ final class ProfileLogoutService {
                 WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
             }
         }
-    }
-    
-    private func dispose() {
-        OAuth2TokenStorage.shared.token = nil
-        ProfileImageService.shared.dispose()
-        ProfileService.shared.dispose()
-        ImagesListService.shared.dispose()
     }
 }

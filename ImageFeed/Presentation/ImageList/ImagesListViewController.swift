@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ImagesListViewController: UIViewController, ImagesListCellDelegate {
+final class ImagesListViewController: UIViewController, ImagesListCellDelegate, ProfileLogoutProtocol, DisposableProtocol {
     // MARK: - @IBOutlet
     @IBOutlet weak private var tableView: UITableView!
     
@@ -28,6 +28,8 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate {
             queue: .main) { _ in
                 self.updateTableViewAnimated()
             }
+        
+        subscribeLogout(self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -91,6 +93,12 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate {
                 // TODO: Add UIAlertController error description
             }
         }
+    }
+    
+    // MARK: - DisposableProtocol
+    func dispose() {
+        self.photos.removeAll()
+        self.tableView.reloadData()
     }
     
     // MARK: - Private func
