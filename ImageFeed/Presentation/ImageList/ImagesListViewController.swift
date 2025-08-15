@@ -88,9 +88,9 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
                 self.photos = self.imagesListService.photos
                 cell.setIsLiked(isLiked: self.photos[indexPath.row].isLiked)
                 UIBlockingProgressHUD.hide()
-            case .failure:
+            case .failure(let error):
                 UIBlockingProgressHUD.hide()
-                // TODO: Add UIAlertController error description
+                self.showError(error)
             }
         }
     }
@@ -102,6 +102,18 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
     }
     
     // MARK: - Private func
+    private func showError(_ error: Error) {
+        let alert = UIAlertController(
+            title: "Что-то пошло не так(",
+            message: error.localizedDescription,
+            preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     private func updateTableViewAnimated() {
         let oldCount = photos.count
         let newCount = imagesListService.photos.count
