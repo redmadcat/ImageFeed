@@ -11,6 +11,9 @@
 		9403D8722E31F4B100727E83 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9403D8712E31F4B100727E83 /* Kingfisher */; };
 		9403D8752E3212EC00727E83 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 9403D8742E3212EC00727E83 /* SwiftKeychainWrapper */; };
 		9403D8772E322F9400727E83 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9403D8762E322F8B00727E83 /* TabBarController.swift */; };
+		941A2F742E4F1BB5004F35A8 /* DisposableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941A2F732E4F1BA9004F35A8 /* DisposableProtocol.swift */; };
+		941A2F762E4F1BE5004F35A8 /* ProfileLogoutProtocol+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941A2F752E4F1BD9004F35A8 /* ProfileLogoutProtocol+Extensions.swift */; };
+		941A2F782E4F22CA004F35A8 /* ProfileLogoutProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941A2F772E4F22B5004F35A8 /* ProfileLogoutProtocol.swift */; };
 		942F62B62E4B1848008CE5E3 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942F62B52E4B1840008CE5E3 /* Array+Extensions.swift */; };
 		942F62B82E4B3B36008CE5E3 /* ImagesListCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942F62B72E4B3B2C008CE5E3 /* ImagesListCellDelegate.swift */; };
 		944021D22DF98E0C008955DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944021C82DF98E0C008955DE /* AppDelegate.swift */; };
@@ -53,6 +56,9 @@
 /* Begin PBXFileReference section */
 		94013FE32E0A7A83001503A1 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		9403D8762E322F8B00727E83 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		941A2F732E4F1BA9004F35A8 /* DisposableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisposableProtocol.swift; sourceTree = "<group>"; };
+		941A2F752E4F1BD9004F35A8 /* ProfileLogoutProtocol+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileLogoutProtocol+Extensions.swift"; sourceTree = "<group>"; };
+		941A2F772E4F22B5004F35A8 /* ProfileLogoutProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLogoutProtocol.swift; sourceTree = "<group>"; };
 		942F62B52E4B1840008CE5E3 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		942F62B72E4B3B2C008CE5E3 /* ImagesListCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCellDelegate.swift; sourceTree = "<group>"; };
 		944021B02DF98C36008955DE /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +169,7 @@
 		946FE69E2E165CE7005E0A50 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				941A2F732E4F1BA9004F35A8 /* DisposableProtocol.swift */,
 				94BAB8742E30CE80000334B7 /* LogHelper.swift */,
 				9469C2F02E2912B40097C84B /* UIBlockingProgressHUD.swift */,
 				946FE69F2E165CF1005E0A50 /* Constant.swift */,
@@ -213,6 +220,7 @@
 		949D9E342DFCAACD00C3D9F5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				941A2F752E4F1BD9004F35A8 /* ProfileLogoutProtocol+Extensions.swift */,
 				942F62B52E4B1840008CE5E3 /* Array+Extensions.swift */,
 				9469C2F82E2A2DF20097C84B /* JSONDecoder+Extensions.swift */,
 				947D8D4E2E17FFB20009A161 /* URLSession+Extensions.swift */,
@@ -256,6 +264,7 @@
 		94A3D7E02E3786C000BC89E0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				941A2F772E4F22B5004F35A8 /* ProfileLogoutProtocol.swift */,
 				94F979F82E4CBAEE00F6E497 /* ProfileLogoutService.swift */,
 				9469C2FA2E2E058D0097C84B /* ProfileImageService.swift */,
 				9469C2F22E2A11850097C84B /* ProfileService.swift */,
@@ -387,6 +396,8 @@
 				949D9E3F2DFD93C300C3D9F5 /* UIViewController+Extensions.swift in Sources */,
 				9469C2F12E2912C30097C84B /* UIBlockingProgressHUD.swift in Sources */,
 				947D8D492E17CEBC0009A161 /* WebViewViewControllerDelegate.swift in Sources */,
+				941A2F782E4F22CA004F35A8 /* ProfileLogoutProtocol.swift in Sources */,
+				941A2F742E4F1BB5004F35A8 /* DisposableProtocol.swift in Sources */,
 				9469C2FD2E2E0FA50097C84B /* ProfileImage.swift in Sources */,
 				944021D32DF98E0C008955DE /* SceneDelegate.swift in Sources */,
 				94013FE42E0A7A99001503A1 /* UILabel+Extensions.swift in Sources */,
@@ -396,6 +407,7 @@
 				947D8D522E180AD50009A161 /* OAuthTokenResponseBody.swift in Sources */,
 				946FE6A02E165CF5005E0A50 /* Constant.swift in Sources */,
 				94CA760D2E01580C0037986A /* ProfileViewController.swift in Sources */,
+				941A2F762E4F1BE5004F35A8 /* ProfileLogoutProtocol+Extensions.swift in Sources */,
 				947D8D562E1BE20C0009A161 /* AuthViewControllerDelegate.swift in Sources */,
 				9403D8772E322F9400727E83 /* TabBarController.swift in Sources */,
 				94A088622E447B1100EFFFE9 /* Photo.swift in Sources */,
