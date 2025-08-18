@@ -114,7 +114,7 @@ final class ProfileViewController: UIViewController, DisposableProtocol {
     private func getProfileImageView() -> UIView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "Avatar")
+        imageView.image = UIImage(systemName: "person.circle.fill")
         imageView.tintColor = .ypGray
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -152,7 +152,19 @@ final class ProfileViewController: UIViewController, DisposableProtocol {
     
     // MARK: - Button actions
     @objc private func didTapLogoutButton() {
-        dispose()
+        let alert = UIAlertController(
+            title: "Пока, пока!",
+            message: "Уверены, что хотите выйти?",
+            preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Да", style: .default, handler: { _ in
+            self.dispose()
+        })
+        let cancelAction = UIAlertAction(title: "Нет", style: .default, handler: nil)
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
