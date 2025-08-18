@@ -28,12 +28,16 @@ final class SingleImageViewController: UIViewController, UIScrollViewDelegate {
         guard let fullImageUrl else { return }
         
         UIBlockingProgressHUD.show()
-        imageView.kf.setImage(with: URL(string: fullImageUrl)) { [weak self] result in
+        let placeholderImage = UIImage(named: "Stub")
+                   
+        imageView.frame.size = UIScreen.main.bounds.size
+        imageView.kf.setImage(with: URL(string: fullImageUrl), placeholder: placeholderImage) { [weak self] result in
             UIBlockingProgressHUD.hide()
             
             guard let self else { return }
             switch result {
             case .success(let imageResult):
+                self.imageView.contentMode = .scaleAspectFill
                 self.imageView.image = imageResult.image
                 self.imageView.frame.size = imageResult.image.size
                 self.rescaleAndCenterImageInScrollView(image: imageResult.image)
