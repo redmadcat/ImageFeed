@@ -71,7 +71,9 @@ final class ImagesListService: ProfileLogoutProtocol, DisposableProtocol {
                             largeImageURL: item.urls.full,
                             isLiked: item.likedByUser
                         )
-                        self.photos.append(photo)
+                        if !self.photos.contains(where: { $0.id == photo.id }) {
+                            self.photos.append(photo)
+                        }
                     }
                     NotificationCenter.default
                         .post(
