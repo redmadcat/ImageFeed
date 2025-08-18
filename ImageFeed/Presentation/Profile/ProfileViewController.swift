@@ -145,9 +145,12 @@ final class ProfileViewController: UIViewController, DisposableProtocol {
     }
     
     private func resetAuth() {
+        guard let window = UIApplication.shared.windows.first else {
+            fatalError("Invalid window configuration")
+        }
+        
         let splashViewController = SplashViewController()
-        splashViewController.modalPresentationStyle = .fullScreen
-        present(splashViewController, animated: true)
+        window.rootViewController = splashViewController
     }
     
     // MARK: - Button actions
