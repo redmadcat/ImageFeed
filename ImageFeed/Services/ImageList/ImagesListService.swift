@@ -33,6 +33,7 @@ final class ImagesListService: ProfileLogoutProtocol, DisposableProtocol {
     // MARK: - Definition
     private let perPage = 10
     private let urlSession = URLSession.shared
+    private let dateFormatter = ISO8601DateFormatter()
     private var task: URLSessionTask?
     private(set) var photos: [Photo] = []
     private var lastLoadedPage: Int?
@@ -64,7 +65,7 @@ final class ImagesListService: ProfileLogoutProtocol, DisposableProtocol {
                         let photo = Photo(
                             id: item.id,
                             size: CGSize(width: item.width, height: item.height),
-                            createdAt: DateFormatter().date(from: item.createdAt),
+                            createdAt: self.dateFormatter.date(from: item.createdAt),
                             welcomeDescription: item.description,
                             thumbImageURL: item.urls.thumb,
                             largeImageURL: item.urls.full,
