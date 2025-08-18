@@ -21,6 +21,7 @@ final class ImagesListCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         cellImage.kf.cancelDownloadTask()
+        dateLabel.text = nil
     }
     
     func setIsLiked(isLiked: Bool) {
