@@ -68,6 +68,7 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
                 }
                 cell.likeButton.setImage(likeImage, for: .normal)
             case .failure(let error):
+                cell.cellImage.image = placeholderImage
                 log(error.localizedDescription)
             }
         }
