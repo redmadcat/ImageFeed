@@ -20,7 +20,6 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
         super.viewDidLoad()
         
         tableView.contentInset = UIEdgeInsets(top: 10, left:0, bottom: 12, right: 0)
-        imagesListService.fetchPhotosNextPage()
         
         NotificationCenter.default.addObserver(
             forName: ImagesListService.didChangeNotification,
@@ -29,6 +28,7 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
                 self.updateTableViewAnimated()
             }
         
+        imagesListService.fetchPhotosNextPage()
         subscribeLogout(self)
     }
     
@@ -49,11 +49,10 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
     func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
         guard let photo = self.photos[safe: indexPath.row] else { return }
         
-        let placeholderImage = UIImage(systemName: "person.circle.fill")?
-            .withTintColor(.lightGray, renderingMode: .alwaysOriginal)
-            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 70, weight: .regular, scale: .large))
-        
+        let placeholderImage = UIImage(named: "Stub")
         cell.delegate = self
+        cell.cellImage.backgroundColor = .ypWhiteAlpha50
+        cell.cellImage.contentMode = .center
         cell.cellImage.kf.indicatorType = .activity
         cell.cellImage.kf.setImage(
             with: URL(string: photo.thumbImageURL),
@@ -61,10 +60,13 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
         ) { result in
             switch result {
             case .success:
+                cell.cellImage.contentMode = .scaleAspectFill
                 self.tableView.reloadRows(at: [indexPath], with: .automatic)
                 let likeImage = UIImage(named: photo.isLiked ? "FavoritesActive" : "FavoritesNoActive")
+                if let date = photo.createdAt {
+                    cell.dateLabel.text = date.longDateString
+                }
                 cell.likeButton.setImage(likeImage, for: .normal)
-                cell.dateLabel.text = photo.createdAt?.longDateString
             case .failure(let error):
                 log(error.localizedDescription)
             }
@@ -125,7 +127,7 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
                     IndexPath(row: i, section: 0)
                 }
                 tableView.insertRows(at: indexPaths, with: .automatic)
-            } completion: { _ in }
+            }
         }
     }
 }
