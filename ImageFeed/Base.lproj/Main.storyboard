@@ -47,7 +47,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="8fG-Qm-Beo" userLabel="Cell Image">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Stub" translatesAutoresizingMaskIntoConstraints="NO" id="8fG-Qm-Beo" userLabel="Cell Image">
                                                     <rect key="frame" x="16" y="4" width="382" height="216"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
@@ -144,7 +144,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FsL-Ac-h92">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="ngf-hp-FQB">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Stub" translatesAutoresizingMaskIntoConstraints="NO" id="ngf-hp-FQB">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -318,12 +318,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="0" width="1600" height="1059"/>
         <image name="AuthScreenLogo" width="60" height="60"/>
         <image name="FavoritesActive" width="42" height="42"/>
         <image name="LinearGradient" width="343" height="30"/>
         <image name="NavigationBackWhite" width="24" height="24"/>
         <image name="Share" width="50" height="50"/>
+        <image name="Stub" width="83" height="75"/>
         <image name="TabEditorialActive" width="30" height="30"/>
         <namedColor name="YP Black">
             <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
