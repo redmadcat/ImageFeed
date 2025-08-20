@@ -7,28 +7,6 @@
 
 import Foundation
 
-private struct PhotoResult: Codable {
-    let id: String
-    let createdAt: String
-    let width: Int
-    let height: Int
-    let likedByUser: Bool
-    let description: String?
-    let urls: UrlsResult
-}
-
-private struct LikeResult: Codable {
-    let photo: PhotoResult
-}
-
-private struct UrlsResult: Codable {
-    let raw: String
-    let full: String
-    let regular: String
-    let small: String
-    let thumb: String
-}
-
 final class ImagesListService: ProfileLogoutProtocol, DisposableProtocol {
     // MARK: - Definition
     private let perPage = 10

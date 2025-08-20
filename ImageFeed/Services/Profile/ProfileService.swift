@@ -7,13 +7,6 @@
 
 import Foundation
 
-private struct ProfileResult: Codable {
-    let username: String
-    let firstName: String
-    let lastName: String
-    let bio: String?
-}
-
 final class ProfileService: ProfileLogoutProtocol, DisposableProtocol {
     // MARK: - Definition
     private let urlSession = URLSession.shared
@@ -42,7 +35,7 @@ final class ProfileService: ProfileLogoutProtocol, DisposableProtocol {
             case .success(let result):
                 let profile = Profile(
                     username: result.username,
-                    name: result.firstName + " " + result.lastName,
+                    name: result.firstName + " " + (result.lastName ?? ""),
                     loginName: "@\(result.username)",
                     bio: result.bio
                 )
