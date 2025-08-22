@@ -22,6 +22,9 @@
 		944021D52DF98E0C008955DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 944021C92DF98E0C008955DE /* Assets.xcassets */; };
 		944021D72DF98E0C008955DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944021CC2DF98E0C008955DE /* LaunchScreen.storyboard */; };
 		944021D82DF98E0C008955DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944021CE2DF98E0C008955DE /* Main.storyboard */; };
+		945F55272E584840000FB731 /* WebViewViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F55262E58482C000FB731 /* WebViewViewControllerProtocol.swift */; };
+		945F55292E5848A7000FB731 /* WebViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F55282E584899000FB731 /* WebViewPresenterProtocol.swift */; };
+		945F552B2E58491C000FB731 /* WebViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F552A2E584915000FB731 /* WebViewPresenter.swift */; };
 		9469C2EF2E28EE3B0097C84B /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 9469C2EE2E28EE3B0097C84B /* ProgressHUD */; };
 		9469C2F12E2912C30097C84B /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9469C2F02E2912B40097C84B /* UIBlockingProgressHUD.swift */; };
 		9469C2F32E2A11920097C84B /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9469C2F22E2A11850097C84B /* ProfileService.swift */; };
@@ -73,6 +76,9 @@
 		944021CD2DF98E0C008955DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		944021CF2DF98E0C008955DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		944021D02DF98E0C008955DE /* ImagesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListViewController.swift; sourceTree = "<group>"; };
+		945F55262E58482C000FB731 /* WebViewViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewControllerProtocol.swift; sourceTree = "<group>"; };
+		945F55282E584899000FB731 /* WebViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenterProtocol.swift; sourceTree = "<group>"; };
+		945F552A2E584915000FB731 /* WebViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenter.swift; sourceTree = "<group>"; };
 		9469C2F02E2912B40097C84B /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		9469C2F22E2A11850097C84B /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		9469C2F42E2A13520097C84B /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -188,6 +194,9 @@
 		947D8D412E17C1290009A161 /* Security */ = {
 			isa = PBXGroup;
 			children = (
+				945F552A2E584915000FB731 /* WebViewPresenter.swift */,
+				945F55282E584899000FB731 /* WebViewPresenterProtocol.swift */,
+				945F55262E58482C000FB731 /* WebViewViewControllerProtocol.swift */,
 				947D8D552E1BE2030009A161 /* AuthViewControllerDelegate.swift */,
 				947D8D482E17CEAF0009A161 /* WebViewViewControllerDelegate.swift */,
 				947D8D442E17C29E0009A161 /* WebViewViewController.swift */,
@@ -403,6 +412,7 @@
 				947D8D4F2E17FFBD0009A161 /* URLSession+Extensions.swift in Sources */,
 				947A9FB72E55A66A00CF1F62 /* ProfileResult.swift in Sources */,
 				947A9FB52E55A63100CF1F62 /* UrlsResult.swift in Sources */,
+				945F552B2E58491C000FB731 /* WebViewPresenter.swift in Sources */,
 				94A088662E447B9000EFFFE9 /* ImagesListService.swift in Sources */,
 				947D8D432E17C13F0009A161 /* AuthViewController.swift in Sources */,
 				9469C2F32E2A11920097C84B /* ProfileService.swift in Sources */,
@@ -413,6 +423,7 @@
 				941A2F782E4F22CA004F35A8 /* ProfileLogoutProtocol.swift in Sources */,
 				941A2F742E4F1BB5004F35A8 /* DisposableProtocol.swift in Sources */,
 				947A9FB32E55A60000CF1F62 /* LikeResult.swift in Sources */,
+				945F55272E584840000FB731 /* WebViewViewControllerProtocol.swift in Sources */,
 				9469C2FD2E2E0FA50097C84B /* ProfileImage.swift in Sources */,
 				944021D32DF98E0C008955DE /* SceneDelegate.swift in Sources */,
 				94013FE42E0A7A99001503A1 /* UILabel+Extensions.swift in Sources */,
@@ -425,6 +436,7 @@
 				941A2F762E4F1BE5004F35A8 /* ProfileLogoutProtocol+Extensions.swift in Sources */,
 				947A9FB12E55A5D500CF1F62 /* PhotoResult.swift in Sources */,
 				947D8D562E1BE20C0009A161 /* AuthViewControllerDelegate.swift in Sources */,
+				945F55292E5848A7000FB731 /* WebViewPresenterProtocol.swift in Sources */,
 				9403D8772E322F9400727E83 /* TabBarController.swift in Sources */,
 				94A088622E447B1100EFFFE9 /* Photo.swift in Sources */,
 				94F979F92E4CBAFA00F6E497 /* ProfileLogoutService.swift in Sources */,
