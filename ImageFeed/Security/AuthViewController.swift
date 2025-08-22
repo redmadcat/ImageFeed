@@ -26,7 +26,8 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
             guard let webViewController = segue.destination as? WebViewViewController else {
                 fatalError("Invalid segue destination \(showWebViewSegueIdentifier)!")
             }
-            let webViewPresenter = WebViewPresenter()
+            let authHelper = AuthHelper()
+            let webViewPresenter = WebViewPresenter(authHelper: authHelper)
             webViewController.presenter = webViewPresenter
             webViewPresenter.view = webViewController
             webViewController.delegate = self
