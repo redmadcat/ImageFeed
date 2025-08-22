@@ -7,10 +7,6 @@
 
 import Foundation
 
-enum WebViewConstants {
-    static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
-}
-
 final class WebViewPresenter: WebViewPresenterProtocol {
     weak var view: WebViewViewControllerProtocol?
     var authHelper: AuthHelperProtocol
