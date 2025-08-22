@@ -19,15 +19,11 @@ extension WebViewViewController: WKNavigationDelegate {
         }
     }
     
+    // MARK: - Private func
     private func code(from navigationAction: WKNavigationAction) -> String? {
-        if
-            let url = navigationAction.request.url,
-            let urlComponents = URLComponents(string: url.absoluteString),
-            urlComponents.path == Constants.authorizePath,
-            let items = urlComponents.queryItems,
-            let codeItem = items.first(where: { $0.name == Constants.responseType })
+        if let url = navigationAction.request.url
         {
-            return codeItem.value
+            return presenter?.code(from: url)
         } else {
             return nil
         }
