@@ -30,6 +30,8 @@
 		945F553F2E5868A7000FB731 /* WebViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F553D2E5868A7000FB731 /* WebViewTests.swift */; };
 		945F55412E586A8C000FB731 /* WebViewPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F55402E586A82000FB731 /* WebViewPresenterSpy.swift */; };
 		945F55432E586C11000FB731 /* WebViewViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F55422E586C07000FB731 /* WebViewViewControllerSpy.swift */; };
+		945F55452E5E096C000FB731 /* ProfileViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F55442E5E0962000FB731 /* ProfileViewPresenter.swift */; };
+		945F55472E5E0BB7000FB731 /* ProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F55462E5E0BB2000FB731 /* ProfileHelper.swift */; };
 		9469C2EF2E28EE3B0097C84B /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 9469C2EE2E28EE3B0097C84B /* ProgressHUD */; };
 		9469C2F12E2912C30097C84B /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9469C2F02E2912B40097C84B /* UIBlockingProgressHUD.swift */; };
 		9469C2F32E2A11920097C84B /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9469C2F22E2A11850097C84B /* ProfileService.swift */; };
@@ -100,6 +102,8 @@
 		945F553D2E5868A7000FB731 /* WebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewTests.swift; sourceTree = "<group>"; };
 		945F55402E586A82000FB731 /* WebViewPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenterSpy.swift; sourceTree = "<group>"; };
 		945F55422E586C07000FB731 /* WebViewViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewControllerSpy.swift; sourceTree = "<group>"; };
+		945F55442E5E0962000FB731 /* ProfileViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewPresenter.swift; sourceTree = "<group>"; };
+		945F55462E5E0BB2000FB731 /* ProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHelper.swift; sourceTree = "<group>"; };
 		9469C2F02E2912B40097C84B /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		9469C2F22E2A11850097C84B /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		9469C2F42E2A13520097C84B /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -223,6 +227,7 @@
 		946FE69E2E165CE7005E0A50 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				945F55462E5E0BB2000FB731 /* ProfileHelper.swift */,
 				945F552E2E585C8D000FB731 /* AuthHelperProtocol.swift */,
 				945F552C2E585C6D000FB731 /* AuthHelper.swift */,
 				941A2F732E4F1BA9004F35A8 /* DisposableProtocol.swift */,
@@ -357,6 +362,7 @@
 		94CA760B2E0157D00037986A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				945F55442E5E0962000FB731 /* ProfileViewPresenter.swift */,
 				94CA760C2E0157FE0037986A /* ProfileViewController.swift */,
 			);
 			path = Profile;
@@ -489,6 +495,7 @@
 				945F552B2E58491C000FB731 /* WebViewPresenter.swift in Sources */,
 				94A088662E447B9000EFFFE9 /* ImagesListService.swift in Sources */,
 				947D8D432E17C13F0009A161 /* AuthViewController.swift in Sources */,
+				945F55452E5E096C000FB731 /* ProfileViewPresenter.swift in Sources */,
 				9469C2F32E2A11920097C84B /* ProfileService.swift in Sources */,
 				942F62B62E4B1848008CE5E3 /* Array+Extensions.swift in Sources */,
 				949D9E3F2DFD93C300C3D9F5 /* UIViewController+Extensions.swift in Sources */,
@@ -522,6 +529,7 @@
 				9469C2F92E2A2E020097C84B /* JSONDecoder+Extensions.swift in Sources */,
 				947D8D5A2E1BE4540009A161 /* SplashViewController.swift in Sources */,
 				9469C2FB2E2E05960097C84B /* ProfileImageService.swift in Sources */,
+				945F55472E5E0BB7000FB731 /* ProfileHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
