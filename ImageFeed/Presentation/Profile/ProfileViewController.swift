@@ -5,7 +5,6 @@
 //  Created by Roman Yaschenkov on 17.06.2025.
 //
 
-import UIKit
 import Kingfisher
 
 final class ProfileViewController: UIViewController, DisposableProtocol {
@@ -13,6 +12,7 @@ final class ProfileViewController: UIViewController, DisposableProtocol {
     private let profile = ProfileService.shared.profile
     private let profileLogoutService = ProfileLogoutService.shared
     private var profileImageServiceObserver: NSObjectProtocol?
+    var presenter: DisposableProtocol?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -34,7 +34,7 @@ final class ProfileViewController: UIViewController, DisposableProtocol {
     // MARK: - DisposableProtocol
     func dispose() {
         profileLogoutService.dispose()
-        resetAuth()
+        presenter?.dispose()
     }
         
     // MARK: - Private func
@@ -143,16 +143,7 @@ final class ProfileViewController: UIViewController, DisposableProtocol {
     private func getProfileDescriptionLabel() -> UIView {
         UILabel(text: profile?.bio ?? "", textColor: UIColor.ypWhite)
     }
-    
-    private func resetAuth() {
-        guard let window = UIApplication.shared.windows.first else {
-            fatalError("Invalid window configuration")
-        }
         
-        let splashViewController = SplashViewController()
-        window.rootViewController = splashViewController
-    }
-    
     // MARK: - Button actions
     @objc private func didTapLogoutButton() {
         let alert = UIAlertController(
