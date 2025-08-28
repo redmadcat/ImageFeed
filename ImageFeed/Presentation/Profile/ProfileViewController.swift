@@ -7,17 +7,18 @@
 
 import Kingfisher
 
-final class ProfileViewController: UIViewController, DisposableProtocol {
+final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
     // MARK: - Definition
     private let profile = ProfileService.shared.profile
     private let profileLogoutService = ProfileLogoutService.shared
     private var profileImageServiceObserver: NSObjectProtocol?
-    var presenter: DisposableProtocol?
+    var presenter: ProfileViewPresenterProtocol?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
+        presenter?.didUpdateAvatarImage()
         
         profileImageServiceObserver = NotificationCenter.default
             .addObserver(
@@ -26,9 +27,15 @@ final class ProfileViewController: UIViewController, DisposableProtocol {
                 queue: .main
             ){ [weak self] _ in
                 guard let self else { return }
-                self.updateAvatar()
+                presenter?.didUpdateAvatarImage()
             }
-        updateAvatar()
+    }
+    
+    // MARK: - ProfileViewControllerProtocol
+    func updateAvatarWith(imageUrl: URL, placeholderImage: UIImage?) {
+        guard let imageView = view.subviews.compactMap({$0 as? UIImageView}).first else { return }
+        
+        imageView.setImageWith(imageUrl: imageUrl, placeholderImage: placeholderImage, cornerRadius: 35, indicatorType: .activity)
     }
     
     // MARK: - DisposableProtocol
@@ -36,41 +43,7 @@ final class ProfileViewController: UIViewController, DisposableProtocol {
         profileLogoutService.dispose()
         presenter?.dispose()
     }
-        
-    // MARK: - Private func
-    private func updateAvatar() {
-        guard
-            let profileImageURL = ProfileImageService.shared.avatarURL,
-            let imageUrl = URL(string: profileImageURL),
-            let imageView = view.subviews.compactMap({$0 as? UIImageView}).first
-        else { return }
-        
-        let placeholderImage = UIImage(systemName: "person.circle.fill")?
-            .withTintColor(.lightGray, renderingMode: .alwaysOriginal)
-            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 70, weight: .regular, scale: .large))
-        
-        let processor = RoundCornerImageProcessor(cornerRadius: 35)
-        imageView.kf.indicatorType = .activity
-        imageView.kf.setImage(
-            with: imageUrl,
-            placeholder: placeholderImage,
-            options: [
-                .processor(processor),
-                .scaleFactor(UIScreen.main.scale),
-                .cacheOriginalImage,
-                .forceRefresh
-            ]) { result in
-                switch result {
-                case .success(let value):
-                    print(value.image)
-                    print(value.cacheType)
-                    print(value.source)
-                case .failure(let error):
-                    log(error.localizedDescription)
-                }
-            }
-    }
-    
+            
     private func configureLayout() {
         view.backgroundColor = .ypBlack
         

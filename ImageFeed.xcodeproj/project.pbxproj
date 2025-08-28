@@ -23,6 +23,7 @@
 		944021D72DF98E0C008955DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944021CC2DF98E0C008955DE /* LaunchScreen.storyboard */; };
 		944021D82DF98E0C008955DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944021CE2DF98E0C008955DE /* Main.storyboard */; };
 		945AACD42E60426300BC3376 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AACD32E60425300BC3376 /* UIImageView+Extensions.swift */; };
+		945AACD62E6057A100BC3376 /* ProfileViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AACD52E60579700BC3376 /* ProfileViewControllerProtocol.swift */; };
 		945F55272E584840000FB731 /* WebViewViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F55262E58482C000FB731 /* WebViewViewControllerProtocol.swift */; };
 		945F55292E5848A7000FB731 /* WebViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F55282E584899000FB731 /* WebViewPresenterProtocol.swift */; };
 		945F552B2E58491C000FB731 /* WebViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F552A2E584915000FB731 /* WebViewPresenter.swift */; };
@@ -96,6 +97,7 @@
 		944021CF2DF98E0C008955DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		944021D02DF98E0C008955DE /* ImagesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListViewController.swift; sourceTree = "<group>"; };
 		945AACD32E60425300BC3376 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		945AACD52E60579700BC3376 /* ProfileViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerProtocol.swift; sourceTree = "<group>"; };
 		945F55262E58482C000FB731 /* WebViewViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewControllerProtocol.swift; sourceTree = "<group>"; };
 		945F55282E584899000FB731 /* WebViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenterProtocol.swift; sourceTree = "<group>"; };
 		945F552A2E584915000FB731 /* WebViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenter.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 		94CA760B2E0157D00037986A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				945AACD52E60579700BC3376 /* ProfileViewControllerProtocol.swift */,
 				945F55482E5F111A000FB731 /* ProfileViewPresenterProtocol.swift */,
 				945F55442E5E0962000FB731 /* ProfileViewPresenter.swift */,
 				94CA760C2E0157FE0037986A /* ProfileViewController.swift */,
@@ -527,6 +530,7 @@
 				941A2F762E4F1BE5004F35A8 /* ProfileLogoutProtocol+Extensions.swift in Sources */,
 				947A9FB12E55A5D500CF1F62 /* PhotoResult.swift in Sources */,
 				947D8D562E1BE20C0009A161 /* AuthViewControllerDelegate.swift in Sources */,
+				945AACD62E6057A100BC3376 /* ProfileViewControllerProtocol.swift in Sources */,
 				945F55292E5848A7000FB731 /* WebViewPresenterProtocol.swift in Sources */,
 				9403D8772E322F9400727E83 /* TabBarController.swift in Sources */,
 				94A088622E447B1100EFFFE9 /* Photo.swift in Sources */,
