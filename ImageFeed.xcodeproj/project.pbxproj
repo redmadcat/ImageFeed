@@ -220,12 +220,20 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		945F553E2E5868A7000FB731 /* ImageFeedTests */ = {
+		945AACD72E605DE300BC3376 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
 				945F55422E586C07000FB731 /* WebViewViewControllerSpy.swift */,
 				945F55402E586A82000FB731 /* WebViewPresenterSpy.swift */,
 				945F553D2E5868A7000FB731 /* WebViewTests.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		945F553E2E5868A7000FB731 /* ImageFeedTests */ = {
+			isa = PBXGroup;
+			children = (
+				945AACD72E605DE300BC3376 /* WebView */,
 			);
 			path = ImageFeedTests;
 			sourceTree = "<group>";
