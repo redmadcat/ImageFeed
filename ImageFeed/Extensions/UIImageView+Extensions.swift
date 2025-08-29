@@ -10,9 +10,9 @@ import Foundation
 import Kingfisher
 
 extension UIImageView {
-    func setImageWith(imageUrl: URL, placeholderImage: UIImage?, cornerRadius: CGFloat, indicatorType: IndicatorType) {
-        let processor = RoundCornerImageProcessor(cornerRadius: 35)
-        self.kf.indicatorType = .activity
+    func setImageWith(imageUrl: URL, placeholderImage: UIImage?, cornerRadius: CGFloat, indicatorType: IndicatorType = .activity) {
+        let processor = RoundCornerImageProcessor(cornerRadius: cornerRadius)
+        self.kf.indicatorType = indicatorType
         self.kf.setImage(
             with: imageUrl,
             placeholder: placeholderImage,
