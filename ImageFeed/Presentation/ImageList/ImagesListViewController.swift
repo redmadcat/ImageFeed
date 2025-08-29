@@ -7,11 +7,12 @@
 
 import UIKit
 
-final class ImagesListViewController: UIViewController, ImagesListCellDelegate, ProfileLogoutProtocol, DisposableProtocol {
+final class ImagesListViewController: UIViewController, ImagesListCellDelegate, ProfileLogoutProtocol, ImagesListViewControllerProtocol {
     // MARK: - @IBOutlet
     @IBOutlet weak private var tableView: UITableView!
     
     // MARK: - Definition
+    var presenter: ImagesListViewPresenterProtocol?
     var photos: [Photo] = []
     let imagesListService = ImagesListService.shared
     
@@ -20,13 +21,6 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
         super.viewDidLoad()
         
         tableView.contentInset = UIEdgeInsets(top: 10, left:0, bottom: 12, right: 0)
-        
-        NotificationCenter.default.addObserver(
-            forName: ImagesListService.didChangeNotification,
-            object: nil,
-            queue: .main) { _ in
-                self.updateTableViewAnimated()
-            }
         
         imagesListService.fetchPhotosNextPage()
         subscribeLogout(self)
@@ -98,6 +92,22 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
         }
     }
     
+    // MARK: - ImagesListViewControllerProtocol
+    func updateTableViewAnimated() {
+        let oldCount = photos.count
+        let newCount = imagesListService.photos.count
+        photos = imagesListService.photos
+        
+        if oldCount != newCount {
+            tableView.performBatchUpdates {
+                let indexPaths = (oldCount..<newCount).map { i in
+                    IndexPath(row: i, section: 0)
+                }
+                tableView.insertRows(at: indexPaths, with: .automatic)
+            }
+        }
+    }
+    
     // MARK: - DisposableProtocol
     func dispose() {
         self.photos.removeAll()
@@ -115,21 +125,6 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
         
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    private func updateTableViewAnimated() {
-        let oldCount = photos.count
-        let newCount = imagesListService.photos.count
-        photos = imagesListService.photos
-        
-        if oldCount != newCount {
-            tableView.performBatchUpdates {
-                let indexPaths = (oldCount..<newCount).map { i in
-                    IndexPath(row: i, section: 0)
-                }
-                tableView.insertRows(at: indexPaths, with: .automatic)
-            }
-        }
     }
 }
 
