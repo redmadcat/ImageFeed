@@ -22,6 +22,8 @@
 		944021D52DF98E0C008955DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 944021C92DF98E0C008955DE /* Assets.xcassets */; };
 		944021D72DF98E0C008955DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944021CC2DF98E0C008955DE /* LaunchScreen.storyboard */; };
 		944021D82DF98E0C008955DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944021CE2DF98E0C008955DE /* Main.storyboard */; };
+		944ED35E2E61A56D00BB53A3 /* ProfileViewPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED35D2E61A56400BB53A3 /* ProfileViewPresenterSpy.swift */; };
+		944ED3602E61A5DB00BB53A3 /* ProfileViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED35F2E61A5D400BB53A3 /* ProfileViewControllerSpy.swift */; };
 		945AACD42E60426300BC3376 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AACD32E60425300BC3376 /* UIImageView+Extensions.swift */; };
 		945AACD62E6057A100BC3376 /* ProfileViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AACD52E60579700BC3376 /* ProfileViewControllerProtocol.swift */; };
 		945AACDA2E605F2400BC3376 /* ProfileViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AACD92E605F1B00BC3376 /* ProfileViewTests.swift */; };
@@ -97,6 +99,8 @@
 		944021CD2DF98E0C008955DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		944021CF2DF98E0C008955DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		944021D02DF98E0C008955DE /* ImagesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListViewController.swift; sourceTree = "<group>"; };
+		944ED35D2E61A56400BB53A3 /* ProfileViewPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewPresenterSpy.swift; sourceTree = "<group>"; };
+		944ED35F2E61A5D400BB53A3 /* ProfileViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerSpy.swift; sourceTree = "<group>"; };
 		945AACD32E60425300BC3376 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		945AACD52E60579700BC3376 /* ProfileViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerProtocol.swift; sourceTree = "<group>"; };
 		945AACD92E605F1B00BC3376 /* ProfileViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewTests.swift; sourceTree = "<group>"; };
@@ -235,6 +239,8 @@
 		945AACD82E605E7400BC3376 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				944ED35F2E61A5D400BB53A3 /* ProfileViewControllerSpy.swift */,
+				944ED35D2E61A56400BB53A3 /* ProfileViewPresenterSpy.swift */,
 				945AACD92E605F1B00BC3376 /* ProfileViewTests.swift */,
 			);
 			path = Profile;
@@ -569,9 +575,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				945AACDA2E605F2400BC3376 /* ProfileViewTests.swift in Sources */,
+				944ED35E2E61A56D00BB53A3 /* ProfileViewPresenterSpy.swift in Sources */,
 				945F553F2E5868A7000FB731 /* WebViewTests.swift in Sources */,
 				945F55432E586C11000FB731 /* WebViewViewControllerSpy.swift in Sources */,
 				945F55412E586A8C000FB731 /* WebViewPresenterSpy.swift in Sources */,
+				944ED3602E61A5DB00BB53A3 /* ProfileViewControllerSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
