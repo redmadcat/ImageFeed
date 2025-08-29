@@ -5,8 +5,6 @@
 //  Created by Roman Yaschenkov on 17.06.2025.
 //
 
-import Kingfisher
-
 final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
     // MARK: - Definition
     private let profile = ProfileService.shared.profile
@@ -35,7 +33,7 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     func updateAvatarWith(imageUrl: URL, placeholderImage: UIImage?) {
         guard let imageView = view.subviews.compactMap({$0 as? UIImageView}).first else { return }
         
-        imageView.setImageWith(imageUrl: imageUrl, placeholderImage: placeholderImage, cornerRadius: 35, indicatorType: .activity)
+        imageView.setImageWith(imageUrl: imageUrl, placeholderImage: placeholderImage, cornerRadius: 35)
     }
     
     // MARK: - DisposableProtocol
@@ -44,6 +42,7 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         presenter?.dispose()
     }
             
+    // MARK: - Private func
     private func configureLayout() {
         view.backgroundColor = .ypBlack
         
