@@ -7,8 +7,7 @@
 
 final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
     // MARK: - Definition
-    private let profile = ProfileService.shared.profile
-    private let profileLogoutService = ProfileLogoutService.shared
+    private let profile = ProfileService.shared.profile    
     private var profileImageServiceObserver: NSObjectProtocol?
     var presenter: ProfileViewPresenterProtocol?
     
@@ -38,7 +37,6 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     
     // MARK: - DisposableProtocol
     func dispose() {
-        profileLogoutService.dispose()
         presenter?.dispose()
     }
             

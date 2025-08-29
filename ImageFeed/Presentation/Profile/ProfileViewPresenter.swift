@@ -10,7 +10,8 @@ import UIKit
 final class ProfileViewPresenter: ProfileViewPresenterProtocol {
     // MARK: - Definition
     weak var view: ProfileViewControllerProtocol?
-    private var profileHelper: DisposableProtocol?
+    private let profileHelper: DisposableProtocol?
+    private let profileLogoutService = ProfileLogoutService.shared
     
     init(profileHelper: DisposableProtocol) {
         self.profileHelper = profileHelper
@@ -32,6 +33,7 @@ final class ProfileViewPresenter: ProfileViewPresenterProtocol {
     
     // MARK: - DisposableProtocol
     func dispose() {
+        profileLogoutService.dispose()
         profileHelper?.dispose()
     }
 }
