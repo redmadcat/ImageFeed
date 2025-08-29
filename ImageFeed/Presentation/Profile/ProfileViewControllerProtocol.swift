@@ -8,6 +8,6 @@
 import UIKit
 import Foundation
 
-protocol ProfileViewControllerProtocol: DisposableProtocol {
+protocol ProfileViewControllerProtocol: AnyObject, DisposableProtocol {
     func updateAvatarWith(imageUrl: URL, placeholderImage: UIImage?)
 }

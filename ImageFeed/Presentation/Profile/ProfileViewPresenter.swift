@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import Foundation
-import Kingfisher
 
 final class ProfileViewPresenter: ProfileViewPresenterProtocol {
-    weak var view: ProfileViewController?
+    // MARK: - Definition
+    weak var view: ProfileViewControllerProtocol?
     private var profileHelper: DisposableProtocol?
     
     init(profileHelper: DisposableProtocol) {

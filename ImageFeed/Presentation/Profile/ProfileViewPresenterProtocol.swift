@@ -6,6 +6,6 @@
 //
 
 protocol ProfileViewPresenterProtocol: DisposableProtocol {
-    var view: ProfileViewController? { get set }
+    var view: ProfileViewControllerProtocol? { get set }
     func didUpdateAvatarImage()
 }
