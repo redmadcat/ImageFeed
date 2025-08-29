@@ -5,6 +5,6 @@
 //  Created by Roman Yaschenkov on 15.08.2025.
 //
 
-protocol DisposableProtocol {
+public protocol DisposableProtocol {
     func dispose()
 }
