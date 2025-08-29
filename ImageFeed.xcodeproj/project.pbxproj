@@ -24,6 +24,7 @@
 		944021D82DF98E0C008955DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944021CE2DF98E0C008955DE /* Main.storyboard */; };
 		945AACD42E60426300BC3376 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AACD32E60425300BC3376 /* UIImageView+Extensions.swift */; };
 		945AACD62E6057A100BC3376 /* ProfileViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AACD52E60579700BC3376 /* ProfileViewControllerProtocol.swift */; };
+		945AACDA2E605F2400BC3376 /* ProfileViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AACD92E605F1B00BC3376 /* ProfileViewTests.swift */; };
 		945F55272E584840000FB731 /* WebViewViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F55262E58482C000FB731 /* WebViewViewControllerProtocol.swift */; };
 		945F55292E5848A7000FB731 /* WebViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F55282E584899000FB731 /* WebViewPresenterProtocol.swift */; };
 		945F552B2E58491C000FB731 /* WebViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F552A2E584915000FB731 /* WebViewPresenter.swift */; };
@@ -98,6 +99,7 @@
 		944021D02DF98E0C008955DE /* ImagesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListViewController.swift; sourceTree = "<group>"; };
 		945AACD32E60425300BC3376 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		945AACD52E60579700BC3376 /* ProfileViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerProtocol.swift; sourceTree = "<group>"; };
+		945AACD92E605F1B00BC3376 /* ProfileViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewTests.swift; sourceTree = "<group>"; };
 		945F55262E58482C000FB731 /* WebViewViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewControllerProtocol.swift; sourceTree = "<group>"; };
 		945F55282E584899000FB731 /* WebViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenterProtocol.swift; sourceTree = "<group>"; };
 		945F552A2E584915000FB731 /* WebViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenter.swift; sourceTree = "<group>"; };
@@ -230,9 +232,18 @@
 			path = WebView;
 			sourceTree = "<group>";
 		};
+		945AACD82E605E7400BC3376 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				945AACD92E605F1B00BC3376 /* ProfileViewTests.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		945F553E2E5868A7000FB731 /* ImageFeedTests */ = {
 			isa = PBXGroup;
 			children = (
+				945AACD82E605E7400BC3376 /* Profile */,
 				945AACD72E605DE300BC3376 /* WebView */,
 			);
 			path = ImageFeedTests;
@@ -557,6 +568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				945AACDA2E605F2400BC3376 /* ProfileViewTests.swift in Sources */,
 				945F553F2E5868A7000FB731 /* WebViewTests.swift in Sources */,
 				945F55432E586C11000FB731 /* WebViewViewControllerSpy.swift in Sources */,
 				945F55412E586A8C000FB731 /* WebViewPresenterSpy.swift in Sources */,
