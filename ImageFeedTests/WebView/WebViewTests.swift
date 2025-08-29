@@ -1,6 +1,6 @@
 //
-//  ImageFeedTests.swift
-//  ImageFeedTests
+//  WebViewTests.swift
+//  WebViewTests
 //
 //  Created by Roman Yaschenkov on 22.08.2025.
 //
