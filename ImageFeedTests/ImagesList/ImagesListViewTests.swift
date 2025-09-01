@@ -10,7 +10,17 @@ import XCTest
 
 final class ImagesListViewTests: XCTestCase {
     
-    func testImagesList() {
+    func testUpdateTableViewAnimated() {
+        // given
+        let viewController = ImagesListViewControllerSpy()
+        let presenter = ImagesListViewPresenterSpy()
+        viewController.presenter = presenter
+        presenter.view = viewController
+                
+        // when
+        presenter.view?.updateTableViewAnimated()
         
+        // then
+        XCTAssertTrue(viewController.didUpdateTableViewAnimatedCalled)
     }
 }
