@@ -28,7 +28,7 @@
 		9456E8BD2E64820B005EF582 /* ImagesListViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9456E8BC2E648203005EF582 /* ImagesListViewControllerSpy.swift */; };
 		9456E8BF2E648227005EF582 /* ImagesListViewPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9456E8BE2E64821E005EF582 /* ImagesListViewPresenterSpy.swift */; };
 		9456E8D22E64862B005EF582 /* ImageFeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9456E8CF2E64862B005EF582 /* ImageFeedUITests.swift */; };
-		9456E8D32E64862B005EF582 /* ImageFeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9456E8D02E64862B005EF582 /* ImageFeedUITestsLaunchTests.swift */; };
+		9456E8D72E658DA3005EF582 /* XCUIElement+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9456E8D62E658D96005EF582 /* XCUIElement+Extensions.swift */; };
 		945AACD42E60426300BC3376 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AACD32E60425300BC3376 /* UIImageView+Extensions.swift */; };
 		945AACD62E6057A100BC3376 /* ProfileViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AACD52E60579700BC3376 /* ProfileViewControllerProtocol.swift */; };
 		945AACDA2E605F2400BC3376 /* ProfileViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AACD92E605F1B00BC3376 /* ProfileViewTests.swift */; };
@@ -122,7 +122,7 @@
 		9456E8BE2E64821E005EF582 /* ImagesListViewPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListViewPresenterSpy.swift; sourceTree = "<group>"; };
 		9456E8C42E648621005EF582 /* ImageFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9456E8CF2E64862B005EF582 /* ImageFeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedUITests.swift; sourceTree = "<group>"; };
-		9456E8D02E64862B005EF582 /* ImageFeedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9456E8D62E658D96005EF582 /* XCUIElement+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+Extensions.swift"; sourceTree = "<group>"; };
 		945AACD32E60425300BC3376 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		945AACD52E60579700BC3376 /* ProfileViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerProtocol.swift; sourceTree = "<group>"; };
 		945AACD92E605F1B00BC3376 /* ProfileViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewTests.swift; sourceTree = "<group>"; };
@@ -274,8 +274,8 @@
 		9456E8D12E64862B005EF582 /* ImageFeedUITests */ = {
 			isa = PBXGroup;
 			children = (
+				9456E8D62E658D96005EF582 /* XCUIElement+Extensions.swift */,
 				9456E8CF2E64862B005EF582 /* ImageFeedUITests.swift */,
-				9456E8D02E64862B005EF582 /* ImageFeedUITestsLaunchTests.swift */,
 			);
 			path = ImageFeedUITests;
 			sourceTree = "<group>";
@@ -668,8 +668,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9456E8D72E658DA3005EF582 /* XCUIElement+Extensions.swift in Sources */,
 				9456E8D22E64862B005EF582 /* ImageFeedUITests.swift in Sources */,
-				9456E8D32E64862B005EF582 /* ImageFeedUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
