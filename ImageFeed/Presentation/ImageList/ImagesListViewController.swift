@@ -88,8 +88,8 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
     
     // MARK: - DisposableProtocol
     func dispose() {
-        self.presenter?.dispose()
-        self.tableView?.reloadData()
+        presenter?.dispose()
+        tableView?.reloadData()
     }
 }
 
