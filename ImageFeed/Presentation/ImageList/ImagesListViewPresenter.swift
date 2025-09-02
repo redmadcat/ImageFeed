@@ -65,8 +65,8 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
     }
         
     func dispose() {
-        self.photos.removeAll()
-        self.imagesListService.dispose()
+        photos.removeAll()
+        imagesListService.dispose()
     }
         
     // MARK: - Private func
