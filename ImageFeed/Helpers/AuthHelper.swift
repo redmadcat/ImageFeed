@@ -8,16 +8,11 @@
 import Foundation
 
 final class AuthHelper: AuthHelperProtocol {
+    // MARK: - Definition
     let configuration: AuthConfiguration
     
     init(configuration: AuthConfiguration = .standard) {
         self.configuration = configuration
-    }
-    
-    func authRequest() -> URLRequest? {
-        guard let url = authURL() else { return nil }
-        
-        return URLRequest(url: url)
     }
     
     func authURL() -> URL? {
@@ -35,6 +30,13 @@ final class AuthHelper: AuthHelperProtocol {
         return urlComponents.url
     }
     
+    // MARK: - AuthHelperProtocol
+    func authRequest() -> URLRequest? {
+        guard let url = authURL() else { return nil }
+        
+        return URLRequest(url: url)
+    }
+        
     func code(from url: URL) -> String? {
         if
             let urlComponents = URLComponents(string: url.absoluteString),
