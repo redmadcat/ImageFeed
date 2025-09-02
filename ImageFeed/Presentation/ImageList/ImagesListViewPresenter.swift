@@ -82,7 +82,7 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
             let indexPaths = (oldCount..<newCount).map { i in
                 IndexPath(row: i, section: 0)
             }
-            view?.updateTableViewAnimated(indexPaths: indexPaths)
+            view?.updateTableViewAnimatedAt(indexPaths: indexPaths)
         }
     }
     

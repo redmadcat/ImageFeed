@@ -79,7 +79,7 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
     }
         
     // MARK: - ImagesListViewControllerProtocol
-    func updateTableViewAnimated(indexPaths: [IndexPath]) {
+    func updateTableViewAnimatedAt(indexPaths: [IndexPath]) {
         tableView.performBatchUpdates {
             tableView.insertRows(at: indexPaths, with: .automatic)
         }

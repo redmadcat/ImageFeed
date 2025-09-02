@@ -9,5 +9,5 @@ import Foundation
 
 public protocol ImagesListViewControllerProtocol: AnyObject, DisposableProtocol {
     var presenter: ImagesListViewPresenterProtocol? { get set }
-    func updateTableViewAnimated(indexPaths: [IndexPath])
+    func updateTableViewAnimatedAt(indexPaths: [IndexPath])
 }
