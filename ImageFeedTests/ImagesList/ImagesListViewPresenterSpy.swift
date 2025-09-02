@@ -16,10 +16,7 @@ final class ImagesListViewPresenterSpy: ImagesListViewPresenterProtocol {
     func didLoad() {
         didLoadCalled = true
     }
-    
-    func prepareForUpdate() {
-    }
-    
+        
     func fetchPhotosNextPage() {
     }
     
