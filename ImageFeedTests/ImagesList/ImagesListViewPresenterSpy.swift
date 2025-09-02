@@ -17,22 +17,20 @@ final class ImagesListViewPresenterSpy: ImagesListViewPresenterProtocol {
         didLoadCalled = true
     }
         
-    func fetchPhotosNextPage() {
+    func willDisplayAt(indexPath: IndexPath) {
+        
     }
     
     func photosCount() -> Int {
         0
     }
-    
-    func imageSizeAt(indexPath: IndexPath) -> CGSize? {
-        return nil
-    }
-    
-    func largeImageURLAt(indexPath: IndexPath) -> String {
-        return ""
-    }
-    
-    func imageDetailsAt(indexPath: IndexPath) -> (thumbImageURL: String, createdAt: Date?, isLiked: Bool)? {
+        
+    func photoInfoAt(indexPath: IndexPath) -> (
+        largeImage: String,
+        thumbImage: String,
+        createdAt: Date?,
+        isLiked: Bool,
+        size: CGSize)? {
         return nil
     }
     
