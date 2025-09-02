@@ -6,17 +6,16 @@
 //
 
 import ImageFeed
+import Foundation
 
 final class ImagesListViewControllerSpy: ImagesListViewControllerProtocol {
     var presenter: ImagesListViewPresenterProtocol?
-    var didUpdateTableViewAnimatedCalled: Bool = false
-    var disposeCalled: Bool = false
     
-    func updateTableViewAnimated() {
-        didUpdateTableViewAnimatedCalled = true
+    func updateTableViewAnimatedAt(indexPaths: [IndexPath]) {
+        
     }
     
     func dispose() {
-        disposeCalled = true
+        
     }
 }
