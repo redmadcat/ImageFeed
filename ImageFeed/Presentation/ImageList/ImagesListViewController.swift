@@ -28,17 +28,17 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
             guard
                 let viewController = segue.destination as? SingleImageViewController,
                 let indexPath = sender as? IndexPath,
-                let largeImageURL = presenter?.largeImageURLAt(indexPath: indexPath)
+                let photoInfo = presenter?.photoInfoAt(indexPath: indexPath)
             else { fatalError("Invalid segue destination or photo is not available!") }
                         
-            viewController.fullImageUrl = largeImageURL
+            viewController.fullImageUrl = photoInfo.largeImage
         } else {
             super.prepare(for: segue, sender: sender)
         }
     }
 
     func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
-        guard let photo = presenter?.imageDetailsAt(indexPath: indexPath) else { return }
+        guard let photoInfo = presenter?.photoInfoAt(indexPath: indexPath) else { return }
         
         let placeholderImage = UIImage(named: "Stub")
         cell.delegate = self
@@ -46,15 +46,15 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
         cell.cellImage.contentMode = .center
         cell.cellImage.kf.indicatorType = .activity
         cell.cellImage.kf.setImage(
-            with: URL(string: photo.thumbImageURL),
+            with: URL(string: photoInfo.thumbImage),
             placeholder: placeholderImage
         ) { result in
             switch result {
             case .success:
                 cell.cellImage.contentMode = .scaleAspectFill
                 self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                let likeImage = UIImage(named: photo.isLiked ? "FavoritesActive" : "FavoritesNoActive")
-                if let date = photo.createdAt {
+                let likeImage = UIImage(named: photoInfo.isLiked ? "FavoritesActive" : "FavoritesNoActive")
+                if let date = photoInfo.createdAt {
                     cell.dateLabel.text = date.longDateString
                 }
                 cell.likeButton.setImage(likeImage, for: .normal)
