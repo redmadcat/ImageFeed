@@ -8,4 +8,5 @@
 public protocol ProfileViewPresenterProtocol: DisposableProtocol {
     var view: ProfileViewControllerProtocol? { get set }
     func didUpdateAvatarImage()
+    func didLogout()
 }
