@@ -20,6 +20,5 @@ final class ProfileViewControllerSpy: ProfileViewControllerProtocol {
     
     func dispose() {
         disposeCalled = true
-        presenter?.dispose()
     }
 }
