@@ -7,6 +7,7 @@
 
 @testable import ImageFeed
 import XCTest
+import UIKit
 
 final class ProfileViewTests: XCTestCase {
     
@@ -25,19 +26,42 @@ final class ProfileViewTests: XCTestCase {
         XCTAssertTrue(presenter.didUpdateAvatarCalled)
     }
     
-    func testDisposeCalls() {
+    func testProfileHelperDisposeCalls() {
         // given
-        let viewController = ProfileViewControllerSpy()
         let profileHelper = ProfileHelperSpy()
-        
         let presenter = ProfileViewPresenter(profileHelper: profileHelper)
-        viewController.presenter = presenter
-        presenter.view = viewController
         
         // when
         presenter.dispose()
                                 
         // then
         XCTAssertTrue(profileHelper.disposeCalled)
+    }
+    
+    func testProfileViewPresenterDisposeCalls() {
+        // given
+        let viewController = ProfileViewController()
+        let profileHelper = ProfileHelper()
+        let presenter = ProfileViewPresenterSpy(profileHelper: profileHelper)
+        viewController.presenter = presenter
+        presenter.view = viewController
+        
+        // when
+        viewController.dispose()
+        
+        // then
+        XCTAssertTrue(presenter.disposeCalled)
+    }
+    
+    func testResetRootViewControllerCalls() {
+        // given
+        let profileHelper = ProfileHelper()
+        let presenter = ProfileViewPresenter(profileHelper: profileHelper)
+        
+        // when
+        presenter.dispose()
+                                
+        // then
+        XCTAssertTrue(UIApplication.shared.windows.first?.rootViewController is SplashViewController)
     }
 }
