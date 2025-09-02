@@ -13,16 +13,12 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
     
     // MARK: - Definition
     var presenter: ImagesListViewPresenterProtocol?
-    var photos: [Photo] = []
-    let imagesListService = ImagesListService.shared
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.contentInset = UIEdgeInsets(top: 10, left:0, bottom: 12, right: 0)
-        
-        imagesListService.fetchPhotosNextPage()
         subscribeLogout(self)
     }
     
@@ -31,17 +27,17 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
             guard
                 let viewController = segue.destination as? SingleImageViewController,
                 let indexPath = sender as? IndexPath,
-                let photo = self.photos[safe: indexPath.row]
+                let largeImageURL = presenter?.largeImageURLAt(indexPath: indexPath)
             else { fatalError("Invalid segue destination or photo is not available!") }
                         
-            viewController.fullImageUrl = photo.largeImageURL
+            viewController.fullImageUrl = largeImageURL
         } else {
             super.prepare(for: segue, sender: sender)
         }
     }
 
     func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
-        guard let photo = self.photos[safe: indexPath.row] else { return }
+        guard let photo = presenter?.imageDetailsAt(indexPath: indexPath) else { return }
         
         let placeholderImage = UIImage(named: "Stub")
         cell.delegate = self
@@ -76,55 +72,23 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
     func imageListCellDidTapLike(_ cell: ImagesListCell) {
         guard
             let indexPath = tableView.indexPath(for: cell),
-            let photo = self.photos[safe: indexPath.row] else { return }
-     
-        UIBlockingProgressHUD.show()
-        imagesListService.changeLike(photoId: photo.id, isLike: !photo.isLiked) { result in
-            switch result {
-            case .success:
-                self.photos = self.imagesListService.photos
-                cell.setIsLiked(isLiked: self.photos[indexPath.row].isLiked)
-                UIBlockingProgressHUD.hide()
-            case .failure(let error):
-                UIBlockingProgressHUD.hide()
-                self.showError(error)
-            }
-        }
+            let result = presenter?.changeLikeAt(indexPath: indexPath)
+        else { return }
+                             
+        cell.setIsLiked(isLiked: result)
     }
-    
-    // MARK: - ImagesListViewControllerProtocol
-    func updateTableViewAnimated() {
-        let oldCount = photos.count
-        let newCount = imagesListService.photos.count
-        photos = imagesListService.photos
         
-        if oldCount != newCount {
-            tableView.performBatchUpdates {
-                let indexPaths = (oldCount..<newCount).map { i in
-                    IndexPath(row: i, section: 0)
-                }
-                tableView.insertRows(at: indexPaths, with: .automatic)
-            }
+    // MARK: - ImagesListViewControllerProtocol
+    func updateTableViewAnimated(indexPaths: [IndexPath]) {
+        tableView.performBatchUpdates {
+            tableView.insertRows(at: indexPaths, with: .automatic)
         }
     }
     
     // MARK: - DisposableProtocol
     func dispose() {
-        self.photos.removeAll()
+        self.presenter?.dispose()
         self.tableView.reloadData()
-    }
-    
-    // MARK: - Private func
-    private func showError(_ error: Error) {
-        let alert = UIAlertController(
-            title: "Что-то пошло не так(",
-            message: error.localizedDescription,
-            preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        
-        alert.addAction(okAction)
-        self.present(alert, animated: true, completion: nil)
     }
 }
 
