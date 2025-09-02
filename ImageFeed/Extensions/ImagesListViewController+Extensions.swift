@@ -26,9 +26,8 @@ extension ImagesListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row + 1 == presenter?.photosCount() {
-            presenter?.fetchPhotosNextPage()
-        }
+        if CommandLine.arguments.contains("SkipWillDisplay") { return }
+        presenter?.willDisplayAt(indexPath: indexPath)
     }
 }
 
@@ -39,13 +38,13 @@ extension ImagesListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let size = presenter?.imageSizeAt(indexPath: indexPath) else { return 0 }
+        guard let photoInfo = presenter?.photoInfoAt(indexPath: indexPath) else { return 0 }
         
         let imageInsets = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
         let imageViewWidth = tableView.bounds.width - imageInsets.left - imageInsets.right
-        let imageWidth = size.width
+        let imageWidth = photoInfo.size.width
         let scale = imageViewWidth / imageWidth
-        let cellHeight = size.height * scale + imageInsets.top + imageInsets.bottom
+        let cellHeight = photoInfo.size.height * scale + imageInsets.top + imageInsets.bottom
         return cellHeight
     }
 }
