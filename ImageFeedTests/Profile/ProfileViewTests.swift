@@ -25,7 +25,7 @@ final class ProfileViewTests: XCTestCase {
         XCTAssertTrue(viewController.didUpdateAvatarCalled)
     }
     
-    func testDisposeCalls() {
+    func testDidLogoutCalls() {
         // given
         let viewController = ProfileViewControllerSpy()
         let profileHelper = ProfileHelperSpy()
@@ -34,12 +34,12 @@ final class ProfileViewTests: XCTestCase {
         presenter.view = viewController
         
         // when
-        viewController.dispose()
+        presenter.didLogout()
                 
         // then
+        XCTAssertTrue(presenter.logoutCalled)
         XCTAssertTrue(viewController.disposeCalled)
         XCTAssertTrue(presenter.disposeCalled)
         XCTAssertTrue(profileHelper.disposeCalled)
     }
 }
-
