@@ -11,6 +11,7 @@ import Foundation
 final class ProfileViewPresenterSpy: ProfileViewPresenterProtocol {
     var view: ProfileViewControllerProtocol?
     var disposeCalled: Bool = false
+    var logoutCalled: Bool = false
     private var profileHelper: DisposableProtocol?
     
     init(profileHelper: DisposableProtocol) {
@@ -19,6 +20,11 @@ final class ProfileViewPresenterSpy: ProfileViewPresenterProtocol {
     
     func didUpdateAvatarImage() {
         view?.updateAvatarWith(imageUrl: URL(string: "/fake/path")!, placeholderImage: nil)
+    }
+    
+    func didLogout() {
+        logoutCalled = true
+        view?.dispose()
     }
     
     func dispose() {
