@@ -11,8 +11,8 @@ import Foundation
 final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
     // MARK: - Definition
     var view: ImagesListViewControllerProtocol?
-    var photos: [Photo] = []
-    let imagesListService = ImagesListService.shared
+    private var photos: [Photo] = []
+    private let imagesListService = ImagesListService.shared
             
     func didLoad() {
         NotificationCenter.default.addObserver(
@@ -22,7 +22,7 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
                 self.prepareForUpdate()
             }
         
-        imagesListService.fetchPhotosNextPage()
+        fetchNextPhotos()
     }
             
     // MARK: - ImagesListViewPresenterProtocol
@@ -30,27 +30,14 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
         photos.count
     }
     
-    func fetchPhotosNextPage() {
-        imagesListService.fetchPhotosNextPage()
-    }
-    
-    func imageSizeAt(indexPath: IndexPath) -> CGSize? {
-        guard let image = self.photos[safe: indexPath.row] else { return nil }
-        return image.size
-    }
-    
-    func largeImageURLAt(indexPath: IndexPath) -> String {
-        guard let image = self.photos[safe: indexPath.row] else { return "" }
-        return image.largeImageURL
-    }
-    
-    func imageDetailsAt(indexPath: IndexPath) -> (thumbImageURL: String, createdAt: Date?, isLiked: Bool)? {
-        guard let image = self.photos[safe: indexPath.row] else { return nil }
-        return (image.thumbImageURL, image.createdAt, image.isLiked)
+    func willDisplayAt(indexPath: IndexPath) {
+        if indexPath.row + 1 == photosCount() {
+            fetchNextPhotos()
+        }
     }
     
     func changeLikeAt(indexPath: IndexPath) -> Bool? {
-        guard let photo = self.photos[safe: indexPath.row] else { return nil }
+        guard let photo = getPhotoAt(indexPath: indexPath) else { return nil }
         
         UIBlockingProgressHUD.show()
         
@@ -66,6 +53,16 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
         }
         return !photo.isLiked
     }
+    
+    func photoInfoAt(indexPath: IndexPath) -> (
+        largeImage: String,
+        thumbImage: String,
+        createdAt: Date?,
+        isLiked: Bool,
+        size: CGSize)? {
+        guard let photo = getPhotoAt(indexPath: indexPath) else { return nil }
+        return (photo.largeImageURL, photo.thumbImageURL, photo.createdAt, photo.isLiked, photo.size)
+    }
         
     func dispose() {
         self.photos.removeAll()
@@ -73,6 +70,15 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
     }
         
     // MARK: - Private func
+    private func fetchNextPhotos() {
+        imagesListService.fetchPhotosNextPage()
+    }
+    
+    private func getPhotoAt(indexPath: IndexPath) -> Photo? {
+        guard let photo = self.photos[safe: indexPath.row] else { return nil }
+        return photo
+    }
+    
     private func prepareForUpdate() {
         let oldCount = photos.count
         let newCount = imagesListService.photos.count
