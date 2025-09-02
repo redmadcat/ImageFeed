@@ -18,11 +18,7 @@ final class ImagesListService: ProfileLogoutProtocol, DisposableProtocol {
         
     static let didChangeNotification = Notification.Name(rawValue: "ImagesListServiceDidChange")
     static let shared = ImagesListService()
-    
-    private init() {
-        subscribeLogout(self)
-    }
-    
+        
     // MARK: - Lifecycle
     func fetchPhotosNextPage() {
         if task != nil { return }
