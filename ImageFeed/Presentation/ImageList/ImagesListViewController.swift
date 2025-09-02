@@ -17,8 +17,9 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.didLoad()
         
-        tableView.contentInset = UIEdgeInsets(top: 10, left:0, bottom: 12, right: 0)
+        tableView?.contentInset = UIEdgeInsets(top: 10, left:0, bottom: 12, right: 0)
         subscribeLogout(self)
     }
     
@@ -88,7 +89,7 @@ final class ImagesListViewController: UIViewController, ImagesListCellDelegate, 
     // MARK: - DisposableProtocol
     func dispose() {
         self.presenter?.dispose()
-        self.tableView.reloadData()
+        self.tableView?.reloadData()
     }
 }
 
