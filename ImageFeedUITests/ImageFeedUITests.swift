@@ -12,7 +12,8 @@ final class ImageFeedUITests: XCTestCase {
     
     override func setUpWithError() throws {
         continueAfterFailure = false
-
+            
+        app.launchArguments = ["SkipWillDisplay"]
         app.launch()
     }
     
@@ -28,8 +29,9 @@ final class ImageFeedUITests: XCTestCase {
         
         loginTextField.tap()
         loginTextField.typeText("")
-        webView.swipeUp()
+        app.toolbars.buttons["Done"].tap()
         
+        sleep(3)
         let passwordTextField = webView.descendants(matching: .secureTextField).element
         XCTAssertTrue(passwordTextField.waitForExistence(timeout: 5))
         
@@ -56,12 +58,9 @@ final class ImageFeedUITests: XCTestCase {
         let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 1)
         
         cellToLike.buttons["Like"].tap()
-        cellToLike.buttons["Like"].isAccessibilityElement = true
         sleep(2)
         cellToLike.buttons["Like"].tap()
-        
         sleep(2)
-        
         cellToLike.tap()
         
         sleep(2)
