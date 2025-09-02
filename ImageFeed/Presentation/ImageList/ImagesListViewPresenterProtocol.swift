@@ -9,6 +9,7 @@ import Foundation
 
 public protocol ImagesListViewPresenterProtocol: DisposableProtocol {
     var view: ImagesListViewControllerProtocol? { get set }
+    func didLoad()
     func fetchPhotosNextPage()
     func photosCount() -> Int
     func imageSizeAt(indexPath: IndexPath) -> CGSize?

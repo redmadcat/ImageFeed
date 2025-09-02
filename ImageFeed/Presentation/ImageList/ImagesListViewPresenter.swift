@@ -14,7 +14,7 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
     var photos: [Photo] = []
     let imagesListService = ImagesListService.shared
             
-    init() {
+    func didLoad() {
         NotificationCenter.default.addObserver(
             forName: ImagesListService.didChangeNotification,
             object: nil,
