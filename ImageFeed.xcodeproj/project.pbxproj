@@ -23,7 +23,6 @@
 		944021D72DF98E0C008955DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944021CC2DF98E0C008955DE /* LaunchScreen.storyboard */; };
 		944021D82DF98E0C008955DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944021CE2DF98E0C008955DE /* Main.storyboard */; };
 		944ED35E2E61A56D00BB53A3 /* ProfileViewPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED35D2E61A56400BB53A3 /* ProfileViewPresenterSpy.swift */; };
-		944ED3602E61A5DB00BB53A3 /* ProfileViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944ED35F2E61A5D400BB53A3 /* ProfileViewControllerSpy.swift */; };
 		9456E8BB2E648166005EF582 /* ImagesListViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9456E8BA2E64815A005EF582 /* ImagesListViewTests.swift */; };
 		9456E8BF2E648227005EF582 /* ImagesListViewPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9456E8BE2E64821E005EF582 /* ImagesListViewPresenterSpy.swift */; };
 		9456E8D22E64862B005EF582 /* ImageFeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9456E8CF2E64862B005EF582 /* ImageFeedUITests.swift */; };
@@ -114,7 +113,6 @@
 		944021CF2DF98E0C008955DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		944021D02DF98E0C008955DE /* ImagesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListViewController.swift; sourceTree = "<group>"; };
 		944ED35D2E61A56400BB53A3 /* ProfileViewPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewPresenterSpy.swift; sourceTree = "<group>"; };
-		944ED35F2E61A5D400BB53A3 /* ProfileViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerSpy.swift; sourceTree = "<group>"; };
 		9456E8BA2E64815A005EF582 /* ImagesListViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListViewTests.swift; sourceTree = "<group>"; };
 		9456E8BE2E64821E005EF582 /* ImagesListViewPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListViewPresenterSpy.swift; sourceTree = "<group>"; };
 		9456E8C42E648621005EF582 /* ImageFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,7 +286,6 @@
 			isa = PBXGroup;
 			children = (
 				949C404A2E61AE17000A5D6F /* ProfileHelperSpy.swift */,
-				944ED35F2E61A5D400BB53A3 /* ProfileViewControllerSpy.swift */,
 				944ED35D2E61A56400BB53A3 /* ProfileViewPresenterSpy.swift */,
 				945AACD92E605F1B00BC3376 /* ProfileViewTests.swift */,
 			);
@@ -678,7 +675,6 @@
 				9456E8BB2E648166005EF582 /* ImagesListViewTests.swift in Sources */,
 				945F55432E586C11000FB731 /* WebViewViewControllerSpy.swift in Sources */,
 				945F55412E586A8C000FB731 /* WebViewPresenterSpy.swift in Sources */,
-				944ED3602E61A5DB00BB53A3 /* ProfileViewControllerSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
