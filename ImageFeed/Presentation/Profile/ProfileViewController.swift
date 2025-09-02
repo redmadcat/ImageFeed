@@ -7,7 +7,7 @@
 
 final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
     // MARK: - Definition
-    private let profile = ProfileService.shared.profile    
+    private let profile = ProfileService.shared.profile
     private var profileImageServiceObserver: NSObjectProtocol?
     var presenter: ProfileViewPresenterProtocol?
     
@@ -117,19 +117,7 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         
     // MARK: - Button actions
     @objc private func didTapLogoutButton() {
-        let alert = UIAlertController(
-            title: "Пока, пока!",
-            message: "Уверены, что хотите выйти?",
-            preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: "Да", style: .default, handler: { _ in
-            self.dispose()
-        })
-        let cancelAction = UIAlertAction(title: "Нет", style: .default, handler: nil)
-        
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
+        presenter?.didLogout()
     }
 }
 
