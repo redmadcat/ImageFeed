@@ -10,10 +10,13 @@ import Foundation
 public protocol ImagesListViewPresenterProtocol: DisposableProtocol {
     var view: ImagesListViewControllerProtocol? { get set }
     func didLoad()
-    func fetchPhotosNextPage()
     func photosCount() -> Int
-    func imageSizeAt(indexPath: IndexPath) -> CGSize?
-    func largeImageURLAt(indexPath: IndexPath) -> String
-    func imageDetailsAt(indexPath: IndexPath) -> (thumbImageURL: String, createdAt: Date?, isLiked: Bool)?
+    func willDisplayAt(indexPath: IndexPath)
     func changeLikeAt(indexPath: IndexPath) -> Bool?
+    func photoInfoAt(indexPath: IndexPath) -> (
+        largeImage: String,
+        thumbImage: String,
+        createdAt: Date?,
+        isLiked: Bool,
+        size: CGSize)?
 }
