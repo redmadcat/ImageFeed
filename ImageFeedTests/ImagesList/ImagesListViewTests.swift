@@ -10,7 +10,7 @@ import XCTest
 
 final class ImagesListViewTests: XCTestCase {
     
-    func testdidLoadCalled() {
+    func testDidLoadCalled() {
         // given
         let viewController = ImagesListViewController()
         let presenter = ImagesListViewPresenterSpy()
